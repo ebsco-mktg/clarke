@@ -3,8 +3,6 @@ The main priority for the CLARKE framework is to better standardize our working 
 
 CLARKE is named for Edith Clarke (https://en.wikipedia.org/wiki/Edith_Clarke).
 
- 
-
-    "There is no demand for women engineers, as such, as there are for women doctors; but there's always a demand for anyone who can do a good piece of work."
-
- 
+<blockquote>
+There is no demand for women engineers, as such, as there are for women doctors; but there's always a demand for anyone who can do a good piece of work.
+</blockquote>
