@@ -343,7 +343,7 @@ var LEAD = (function() {
 						cookeEisId = typeof cookieObj[config.custom.id] !== undefined ? cookieObj[config.custom.id] : 'not set',
 						cookeEisStrategy = typeof cookieObj[config.custom.strategy] !== undefined ? cookieObj[config.custom.strategy] : 'not set',
 
-				    	isTesting = typeof document.getElementById('fakeForm') !== undefined,
+				    	isTesting = document.getElementById('fakeForm') !== null,
 				    	inputType = isTesting ? 'text' : 'hidden',
 						// quick fn to set the input attributes for each
 				    	setInputs = function(inpType, inpName, inpVal) {
@@ -374,7 +374,7 @@ var LEAD = (function() {
 			        // add the inputs to the form if it exists
 		        	for ( ; i<theFormLength; i++ ) {
 		        		var targetElem = isTesting ? document.getElementById( 'hiddenVals' ) : theForm[i];
-
+						window.console.log( 'targetElem: ', targetElem );
 			        	targetElem.appendChild( inputMedium );
 			        	targetElem.appendChild( inputSource );
 			        	targetElem.appendChild( inputCampaign );
@@ -430,6 +430,7 @@ var LEAD = (function() {
 	      	}
 		} else {
 			// no form; return false
+			window.console.log( 'no form detected' );
 			return false;
 	    }
 	    
@@ -528,6 +529,12 @@ var LEAD = (function() {
 		var detectCampaign;
 		
 			EIS.loadOnce( 'JSON', function() {
+				
+				
+				
+				
+				
+				
 			
 				var isNotEbscoDomain = !refIsInList( config.EISDomains );
 	
