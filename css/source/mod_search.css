@@ -1,0 +1,194 @@
+/*
+
+mobile search rules
+
+font-size: 16px
+
+#searchTerms
+    width: 70%
+    font-size: 20px
+
+#refinements
+    font-size: 16px;
+
+item
+    img
+        float: left
+    *
+        remove margin-left
+
+
+*/
+
+/* search window */
+#searchWindow {
+    background: rgba( 255, 255, 255, 0.96 );
+    bottom: 0;
+    display: none;
+    font-size: 16px;
+    line-height: 1.5;
+    left: 0;
+    overflow: auto;
+    padding: 0 10px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 99;
+}
+#gaSearchForm {
+    clear: both;
+    margin: 0 0 1em;
+    position: relative;
+}
+input#searchTerms {
+    background: transparent;
+    border-color: rgb( 204, 204, 204 );
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    box-shadow: inherit;
+    color: rgba( 0, 0, 0, 0.75 );
+    display: block;
+    font-family: "myriad-pro-n4","myriad-pro",sans-serif;
+    float: left;
+    font-size: 20px;
+    height: auto;
+    line-height: 1.5;
+    margin: 0 0 1em;
+    padding: 0;
+    width: 70%;
+}
+    /* remove IE auto 'x' clear mark */
+    input#searchTerms::-ms-clear {
+        display: none;
+    }
+.formActions {
+    display: block;
+    float: left;
+    margin: -30px 0 0 20px;
+    position: relative;
+}
+    #fnCancel {
+        display: block;
+        margin-bottom: 6px;
+        text-decoration: none;
+    }
+        #fnCancel:hover { border-bottom: 0px; }
+    #doSearch {
+        background: url( //www.ebsco.com/apps/global/clarke/css/img/search_icon.png) no-repeat rgb( 169, 42, 122 ) 50% 50% / 40% auto;
+        display: block;
+        height: 32px;
+        position: relative;
+        width: 50px;
+    }
+#clearSearch {
+    color: #858585;
+    cursor: pointer;
+    font-size: 20px;
+    position: absolute;
+    right: 30%;
+    top: 3px;
+}
+#searchRefinements {
+    padding: 0;
+}
+.refinement {
+    color: #284c69;
+    cursor: pointer;
+    display: inline-block;
+    margin: auto auto 20px;
+    outline: 3px solid #284c69;
+    padding: 4px 12px;
+    text-decoration: none;
+}
+    .refinement.active {
+        background-color: #284c69;
+        color: rgb(255,255,255);
+    }
+/* radio fields for refinements */
+.refinements-label {
+    float: left;
+    font-style: italic;
+    margin: 0 12px 0 0;
+}
+.field.radio {
+    float: left;
+    margin-right: 16px;
+}
+.js div.radio label {
+    line-height: 1.5;
+    padding: 0 0 0 20px;
+    position: relative;
+}
+div.field input[type="radio"] {
+    height: 24px;
+}
+
+.total-results {
+    font-style: italic;
+}
+#searchResultList { 
+    clear: left;
+    display: none;
+    margin-bottom: 32px;
+}
+#searchResultList .item {
+    clear: both;
+    margin-bottom: 32px;
+    min-height: 100px;
+    position: relative;
+    transition: all 0.35s ease-in-out;
+}
+    #searchResultList .item:hover {
+        background: rgba( 190, 190, 190, 0.1);
+    }
+#searchResultList .result-title,
+#searchResultList .result-snippet { 
+    margin-bottom: auto;
+}
+#searchResultList .image-link {
+    display: block;
+    max-height: 100px;
+    max-width: 75px;
+    position: relative;
+}
+    #searchResultList .result-thumbnail {
+        float: left;
+        margin-right: 10px;
+        max-height: 100px;
+        max-width: 75px;
+    }
+
+@media screen and (min-width: 481px) {
+    /* search window */
+    #searchWindow {
+        font-size: 18px;
+    }
+    input#searchTerms {
+        font-size: 32px;
+        width: 80%;
+    }
+    #fnCancel {
+        margin-bottom: 21px;
+    }
+    #clearSearch {
+        font-size: 32px;
+        right: 20%;
+        top: 8px;
+    }
+    .refinement {
+        font-size: 20px;
+    }
+    #searchResultList .image-link {
+        left: 0;
+        position: absolute;
+        top: 0;
+    }
+    #searchResultList .result-title,
+    #searchResultList .result-snippet { 
+        margin-left: 100px; 
+    }
+        #searchResultList .result-thumbnail {
+            float: none;
+        }
+}
+
