@@ -64,6 +64,9 @@
         ::Base Styles
     ========================================
 */
+    *, *:before, *:after {
+        box-sizing: border-box;
+    }
     .page  {
         position: relative;
         overflow: hidden;
@@ -72,19 +75,33 @@
     .container {
         position: relative;
     }
+    .container > .inner {
+        max-width: 1280px;
+        min-width: 240px; 
+        padding: 0 10px;
+        margin: auto;             
+    }
     
+/*
     .container > .inner {
         max-width: 1280px;
         min-width: 240px;
         margin: auto;
     }
+*/
     
     .content {
         float:left;
     }
     
+/*  Removed in Clarke (box model)
     .content > .inner {
         padding: 0 10px;
+    }
+*/
+    
+    .content > .inner *:first-child {
+        /*margin-top: 0;*/
     }
     
 /*
