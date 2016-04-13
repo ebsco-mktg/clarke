@@ -1,1 +1,554 @@
-/* initial setup */
+/*
+    ========================================
+        Table of Contents
+    ========================================
+
+    ::Assumed Markup
+    ::Base Styles
+    
+    ::Global Width
+    
+    ::4 Columns
+    ::6 Columns
+    ::8 Columns
+    ::9 Columns
+	::10 Columns //Bill
+    ::12 Columns
+	::14 Columns //Bill
+    ::16 Columns
+    
+    ::Clearfix
+
+
+
+    ========================================
+        ::Assumed Markup
+    ========================================
+
+    <body>
+        <div class="page">
+            <header></header>
+            <section class="container">
+                <div class="inner">
+                    <div class="content">
+                        <div class="inner">
+                            <!-- content goes here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <footer></footer>
+        </div>
+    </body>
+
+    NOTES:
+    ========================================
+    .page
+    Contains any overflow / offscreen elements
+    
+    .container
+    Defines large <section>'s
+    
+    .container > .inner
+    Non-padded, centered fluid width block with clearfix
+    
+    .content
+    A left floating element
+    
+    .content > .inner
+    Padded block with clearfix
+    
+
+
+    ========================================
+        ::Base Styles
+    ========================================
+*/
+    .page  {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .container {
+        position: relative;
+    }
+    
+    .container > .inner {
+        max-width: 1280px;
+        min-width: 240px;
+        margin: auto;
+    }
+    
+    .content {
+        float:left;
+    }
+    
+    .content > .inner {
+        padding: 0 10px;
+    }
+    
+/*
+    ========================================
+        ::Global Width
+    ========================================
+*/
+    .size1of1 { width: 100%; }
+    
+    
+
+/*
+    ========================================
+        ::4 Columns
+    ========================================
+*/
+    .size1of4 { width: 25%; }
+    .size2of4 { width: 50%; }
+    .size3of4 { width: 75%; }
+    .size4of4 { width: 100%; }
+    
+    .shift1of4 { margin-left: 25%; }
+    .shift2of4 { margin-left: 50%; }
+    .shift3of4 { margin-left: 75%; }
+    .shift4of4 { margin-left: 100%; }
+    
+    .hide6,
+    .hide8,
+    .hide9,
+	.hide10, /* Bill */
+    .hide12,
+	.hide14, /* Bill */
+    .hide16 {
+        display: block !important;
+    }
+
+    .hide4 {
+        display: none !important;
+    }
+    
+    .wrap4 { float: none; }
+    .wrap6,
+    .wrap8,
+    .wrap9,
+	.wrap10, /* Bill */
+    .wrap12,
+	.wrap14, /* Bill */
+    .wrap16 { float: left; }
+
+
+
+/*
+    ========================================
+        ::6 Columns
+    ========================================
+*/
+    @media screen and (min-width: 321px) and (max-width: 480px) {
+    
+        .size1of6 { width: 16.66666%; }
+        .size2of6 { width: 33.33333%; }
+        .size3of6 { width: 50%; }
+        .size4of6 { width: 66.66666%; }
+        .size5of6 { width: 83.33333%; }
+        .size6of6 { width: 100%; }
+    
+        .shift1of6 { margin-left: 16.66666%; }
+        .shift2of6 { margin-left: 33.33333%; }
+        .shift3of6 { margin-left: 50%; }
+        .shift4of6 { margin-left: 66.66666%; }
+        .shift5of6 { margin-left: 83.33333%; }
+        .shift6of6 { margin-left: 100%; }
+    
+        .hide4,
+        .hide8,
+        .hide9,
+		.hide10, /* Bill */
+        .hide12,
+		.hide14, /* Bill */
+        .hide16 {
+            display: block !important;
+        }
+    
+        .hide6 {
+            display: none !important;
+        }
+        
+    .wrap6 { float: none; }
+    .wrap4,
+    .wrap8,
+    .wrap9,
+	.wrap10, /* Bill */
+    .wrap12,
+	.wrap14, /* Bill */
+    .wrap16 { float: left; }
+
+    }
+
+
+
+/*
+    ========================================
+        ::8 Columns
+        ::9 Columns
+    ========================================
+*/
+    @media screen and (min-width: 481px) and (max-width: 720px) {
+        /* ::8 Columns */
+        .size1of8 { width: 12.5%; }
+        .size2of8 { width: 25%; }
+        .size3of8 { width: 37.5%; }
+        .size4of8 { width: 50%; }
+        .size5of8 { width: 62.5%; }
+        .size6of8 { width: 75%; }
+        .size7of8 { width: 87.5%; }
+        .size8of8 { width: 100%; }
+        
+        .shift1of8 { margin-left: 12.5%; }
+        .shift2of8 { margin-left: 25%; }
+        .shift3of8 { margin-left: 37.5%; }
+        .shift4of8 { margin-left: 50%; }
+        .shift5of8 { margin-left: 62.5%; }
+        .shift6of8 { margin-left: 75%; }
+        .shift7of8 { margin-left: 87.5%; }
+        .shift8of8 { margin-left: 100%; }
+        
+        
+        
+        /* ::9 Columns */
+        .size1of9 { width: 11.1% }
+        .size2of9 { width: 22.2% }
+        .size3of9 { width: 33.3% }
+        .size4of9 { width: 44.4% }
+        .size5of9 { width: 55.5% }
+        .size6of9 { width: 66.6% }
+        .size7of9 { width: 77.7% }
+        .size8of9 { width: 88.8% }
+        .size9of9 { width: 100% }
+
+        .shift1of9 { margin-left: 11.1% }
+        .shift2of9 { margin-left: 22.2% }
+        .shift3of9 { margin-left: 33.3% }
+        .shift4of9 { margin-left: 44.4% }
+        .shift5of9 { margin-left: 55.5% }
+        .shift6of9 { margin-left: 66.6% }
+        .shift7of9 { margin-left: 77.7% }
+        .shift8of9 { margin-left: 88.8% }
+        .shift9of9 { margin-left: 100% }
+    
+        .hide4,
+        .hide6,
+		.hide10, /* Bill */
+        .hide12,
+		.hide14, /* Bill */
+        .hide16 {
+            display: block !important;
+        }
+    
+        .hide8,
+        .hide9 {
+            display: none !important;
+        }
+
+    .wrap8,
+    .wrap9 { float: none; }
+    .wrap4,
+    .wrap6,
+	.wrap10, /* Bill */
+    .wrap12,
+	.wrap14, /* Bill */
+    .wrap16 { float: left; }
+    
+    }
+
+/*												// Bill
+    ========================================	// Bill
+        ::10 Columns							// Bill
+    ========================================	// Bill
+*/												/* Bill */
+
+    @media screen and (min-width: 721px) and (max-width: 800px) {	/* Bill */
+	
+        .size1of10 { width: 10%; }	/* Bill */
+        .size2of10 { width: 20%; }	/* Bill */
+        .size3of10 { width: 30%; }	/* Bill */
+        .size4of10 { width: 40%; }	/* Bill */
+        .size5of10 { width: 50%; }	/* Bill */
+        .size6of10 { width: 60%; }	/* Bill */
+        .size7of10 { width: 70%; }	/* Bill */
+        .size8of10 { width: 80%; }	/* Bill */
+        .size9of10 { width: 90%; }	/* Bill */
+        .size10of10 { width: 100%; }	/* Bill */
+
+        .shift1of10 { margin-left: 10%; }	/* Bill */
+        .shift2of10 { margin-left: 20%; }	/* Bill */
+        .shift3of10 { margin-left: 30%; }	/* Bill */
+        .shift4of10 { margin-left: 40%; }	/* Bill */
+        .shift5of10 { margin-left: 50%; }	/* Bill */
+        .shift6of10 { margin-left: 60%; }	/* Bill */
+        .shift7of10 { margin-left: 70%; }	/* Bill */
+        .shift8of10 { margin-left: 80%; }	/* Bill */
+        .shift9of10 { margin-left: 90%; }	/* Bill */
+        .shift10of10 { margin-left: 100%; }	/* Bill */
+
+        .hide4,		/* Bill */
+        .hide6,		/* Bill */
+        .hide8,		/* Bill */
+        .hide9,		/* Bill */
+		.hide12,	/* Bill */
+		.hide14,	/* Bill */
+        .hide16 {	/* Bill */
+            display: block !important;	/* Bill */
+        }								/* Bill */
+
+        .hide10 {	/* Bill */
+            display: none !important;	/* Bill */
+        }								/* Bill */
+
+		.wrap10 { float: none; }		/* Bill */
+		.wrap4,		/* Bill */
+		.wrap6,		/* Bill */
+		.wrap8,		/* Bill */
+		.wrap9,		/* Bill */
+		.wrap12, 	/* Bill */
+		.wrap14, 	/* Bill */
+		.wrap16 { float: left; }		/* Bill */
+	
+	}	/* Bill */
+
+
+
+/*
+    ========================================
+        ::12 Columns
+    ========================================
+*/
+ /* @media screen and (min-width: 721px) and (max-width: 960px) { *//* Bill Edit Removed */
+	@media screen and (min-width: 801px) and (max-width: 960px) {	/* Bill Edit Added */
+ 
+        .size1of12 { width: 8.33333%; }
+        .size2of12 { width: 16.66666%; }
+        .size3of12 { width: 25%; }
+        .size4of12 { width: 33.33333%; }
+        .size5of12 { width: 41.66666%; }
+        .size6of12 { width: 50%; }
+        .size7of12 { width: 58.33333%; }
+        .size8of12 { width: 66.66666%; }
+        .size9of12 { width: 75%; }
+        .size10of12 { width: 83.33333%; }
+        .size11of12 { width: 91.66666%; }
+        .size12of12 { width: 100%; }
+
+        .shift1of12 { margin-left: 8.33333%; }
+        .shift2of12 { margin-left: 16.66666%; }
+        .shift3of12 { margin-left: 25%; }
+        .shift4of12 { margin-left: 33.33333%; }
+        .shift5of12 { margin-left: 41.66666%; }
+        .shift6of12 { margin-left: 50%; }
+        .shift7of12 { margin-left: 58.33333%; }
+        .shift8of12 { margin-left: 66.66666%; }
+        .shift9of12 { margin-left: 75%; }
+        .shift10of12 { margin-left: 83.33333%; }
+        .shift11of12 { margin-left: 91.66666%; }
+        .shift12of12 { margin-left: 100%; }
+
+		.size1of8_12 { width: 12.5%; }
+		.size2of8_12 { width: 25%; }
+		.size3of8_12 { width: 37.5%; }
+		.size4of8_12 { width: 50%; }
+		.size5of8_12 { width: 62.5%; }
+		.size6of8_12 { width: 75%; }
+		.size7of8_12 { width: 87.5%; }
+		.size8of8_12 { width: 100%; }
+
+        .hide4,
+        .hide6,
+        .hide8,
+        .hide9,
+		.hide10, /* Bill */
+		.hide14, /* Bill */
+        .hide16 {
+            display: block !important;
+        }
+
+        .hide12 {
+            display: none !important;
+        }
+
+    .wrap12 { float: none; }
+    .wrap4,
+    .wrap6,
+    .wrap8,
+    .wrap9,
+	.wrap10, /* Bill */
+	.wrap14, /* Bill */
+    .wrap16 { float: left; }
+    
+    }
+
+
+/*												// Bill
+    ========================================	// Bill
+        ::14 Columns							// Bill
+    ========================================	// Bill
+*/												/* Bill */
+	@media screen and (min-width: 961px) and (max-width: 1120px) {	/* Bill */
+        .size1of14 { width: 7.1428%; }	/* Bill */
+        .size2of14 { width: 14.2857%; }	/* Bill */
+        .size3of14 { width: 21.4285%; }	/* Bill */
+        .size4of14 { width: 28.5714%; }	/* Bill */
+        .size5of14 { width: 35.7142%; }	/* Bill */
+        .size6of14 { width: 42.8571%; }	/* Bill */
+        .size7of14 { width: 50%; }		/* Bill */
+        .size8of14 { width: 57.1428%; }	/* Bill */
+        .size9of14 { width: 64.2857%; }	/* Bill */
+        .size10of14 { width: 71.4285%; }	/* Bill */
+        .size11of14 { width: 78.5714%; }	/* Bill */
+        .size12of14 { width: 85.7142%; }	/* Bill */
+        .size13of14 { width: 92.8571%; }	/* Bill */
+        .size14of14 { width: 100%; }		/* Bill */
+
+        .shift1of14 { margin-left: 7.1428%; }	/* Bill */
+        .shift2of14 { margin-left: 14.2857%; }	/* Bill */
+        .shift3of14 { margin-left: 21.4285%; }	/* Bill */
+        .shift4of14 { margin-left: 28.5714%; }	/* Bill */
+        .shift5of14 { margin-left: 35.7142%; }	/* Bill */
+        .shift6of14 { margin-left: 42.8571%; }	/* Bill */
+        .shift7of14 { margin-left: 50%; }		/* Bill */
+        .shift8of14 { margin-left: 57.1428%; }	/* Bill */
+        .shift9of14 { margin-left: 64.2857%; }	/* Bill */
+        .shift10of14 { margin-left: 71.4285%; }	/* Bill */
+        .shift11of14 { margin-left: 78.5714%; }	/* Bill */
+        .shift12of14 { margin-left: 85.7142%; }	/* Bill */
+        .shift13of14 { margin-left: 92.8571%; }	/* Bill */
+        .shift14of14 { margin-left: 100%; }		/* Bill */
+
+        .hide4,		/* Bill */
+        .hide6,		/* Bill */
+        .hide8,		/* Bill */
+        .hide9,		/* Bill */
+		.hide10,	/* Bill */
+        .hide12,	/* Bill */
+		.hide16 {	/* Bill */
+            display: block !important;	/* Bill */
+        }								/* Bill */
+
+        .hide14 {	/* Bill */
+            display: none !important;	/* Bill */
+        }								/* Bill */
+
+		.wrap14 { float: none; }	/* Bill */
+		.wrap4,					/* Bill */
+		.wrap6,					/* Bill */
+		.wrap8,					/* Bill */
+		.wrap9,					/* Bill */
+		.wrap10,				/* Bill */
+		.wrap12,				/* Bill */
+		.wrap16{ float: left; }	/* Bill */
+
+	}	/* Bill */
+	
+/*
+    ========================================
+        ::16 Columns
+    ========================================
+*/
+/*  @media screen and (min-width: 961px) {	*//* 	Bill edited this line */
+    @media screen and (min-width: 1121px) {		/*	Bill new edited line */
+        .size1of16 { width: 6.25%; }
+        .size2of16 { width: 12.5%; }
+        .size3of16 { width: 18.75%; }
+        .size4of16 { width: 25%; }
+        .size5of16 { width: 31.25%; }
+        .size6of16 { width: 37.5%; }
+        .size7of16 { width: 43.75%; }
+        .size8of16 { width: 50%; }
+        .size9of16 { width: 56.25%; }
+        .size10of16 { width: 62.25%; }
+        .size11of16 { width: 68.75%; }
+        .size12of16 { width: 75%; }
+        .size13of16 { width: 81.25%; }
+        .size14of16 { width: 87.5%; }
+        .size15of16 { width: 93.75%; }
+        .size16of16 { width: 100%; }
+
+        .shift1of16 { margin-left: 6.25%; }
+        .shift2of16 { margin-left: 12.5%; }
+        .shift3of16 { margin-left: 18.75%; }
+        .shift4of16 { margin-left: 25%; }
+        .shift5of16 { margin-left: 31.25%; }
+        .shift6of16 { margin-left: 37.5%; }
+        .shift7of16 { margin-left: 43.75%; }
+        .shift8of16 { margin-left: 50%; }
+        .shift9of16 { margin-left: 56.25%; }
+        .shift10of16 { margin-left: 62.25%; }
+        .shift11of16 { margin-left: 68.75%; }
+        .shift12of16 { margin-left: 75%; }
+        .shift13of16 { margin-left: 81.25%; }
+        .shift14of16 { margin-left: 87.5%; }
+        .shift15of16 { margin-left: 93.75%; }
+        .shift16of16 { margin-left: 100%; }
+
+		.size1of10_16 { width: 10%; }
+		.size2of10_16 { width: 20%; }
+		.size3of10_16 { width: 30%; }
+		.size4of10_16 { width: 40%; }
+		.size5of10_16 { width: 50%; }
+		.size6of10_16 { width: 60%; }
+		.size7of10_16 { width: 70%; }
+		.size8of10_16 { width: 80%; }
+		.size9of10_16 { width: 90%; }
+		.size10of10_16 { width: 100%; }
+
+
+
+        .hide4,
+        .hide6,
+        .hide8,
+        .hide9,
+		.hide10, /* Bill */
+        .hide12, /* Bill (edit) */
+		.hide14 { /* Bill (edit) */
+            display: block !important;
+        }
+
+        .hide16 {
+            display: none !important;
+        }
+
+    .wrap16 { float: none; }
+    .wrap4,
+    .wrap6,
+    .wrap8,
+    .wrap9,
+	.wrap10, /* Bill */
+    .wrap12, /* Bill (edit) */
+	.wrap14 { float: left; } /* Bill (edit) */
+    
+    }
+
+
+
+/*
+    ========================================
+        ::Clearfix
+    ========================================
+*/
+    .group,
+    .container > .inner,
+    .content > .inner {
+        *zoom: 1;
+    }
+    .group:before,
+    .group:after,
+    .container > .inner:before,
+    .container > .inner:after,
+    .content > .inner:before,
+    .content > .inner:after {
+        display: table;
+        content: " ";
+    }
+    .group:after,
+    .container > .inner:after,
+    .content > .inner:after {
+        clear: both;
+    }
+
+
