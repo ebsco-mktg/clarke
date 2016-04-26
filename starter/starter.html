@@ -7,26 +7,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     
-    <!--No Follow- REMOVE WHEN GO LIVE -->
+    <!--No Follow- REMOVE WHEN GOING LIVE -->
     <meta name="robots" content="noindex;nofollow" />
     
-    <!--RSS meta tag if needed -->
+    <!--RSS meta tag if needed; this is the EBSCOpost rss feed -->
     <link rel="alternate" type="application/rss+xml" href="http://feeds.feedburner.com/ebsco/mLyF" />
     
     <!--Page Data-->    
-    <title>page title</title>
+    <title>Example Starter Site | EIS Framework CLARKE</title>
     <meta name="description" content=""/>
     <meta name="author" content="EBSCO Information Services, Inc."/>
 
-    <meta property="og:site_name"  content="EBSCO Engineering Blog: Insights and News From E"/>
-    <meta property="og:title" content="page title"/>
+    <meta property="og:site_name"   content="EBSCO Engineering Blog: Insights and News From E"/>
+    <meta property="og:title"       content="page title"/>
     <meta property="og:description" content="description goes here"/>
-    <meta property="og:url" content="page url" />
-    <meta property="og:image" content="link_to_image">
-    <meta property="og:type"   content="article">
-    <meta name="twitter:title" content="page title" />
-    <meta name="twitter:url" content="page url" />
-    <meta name="twitter:image" content="link_to_image" />
+    <meta property="og:url"         content="page url" />
+    <meta property="og:image"       content="link_to_image">
+    <meta property="og:type"        content="article">
+    <meta name="twitter:title"      content="page title" />
+    <meta name="twitter:url"        content="page url" />
+    <meta name="twitter:image"      content="link_to_image" />
 
     <!--link to anchor of copyright-->
     <link rel="copyright" href="#henry_copyright"/>
@@ -56,11 +56,16 @@
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
  
     <!--framework-->
-    <link href="/apps/global/clarke/css/eis-core.min.css" />
-    <script src="/apps/global/clarke/js/eis.js"></script>
+    <link href="/apps/global/clarke/css/source/core.css" />
+    <!-- switch from /SOURCE to minified version once CLARKE is stable 
+    <link href="/apps/global/clarke/css/eis-core.min.css" /> -->
+    
+    <script src="/apps/global/clarke/js/source/eis.js"></script>
+    <!-- switch from /SOURCE to minified version once CLARKE is stable
+    <script src="/apps/global/clarke/js/eis.js"></script> -->
 
     <!--site styles-->
-    <link href="/files/css/main.css" />
+    <link href="css/main.css" />
     
     <!--favicon if needed-->
     <link rel="shortcut icon" href="/home/files/favicon.ico" />
@@ -72,7 +77,7 @@
 </head>
 <body>
     <div id="starterSite" class="page_starter-template">
-        <header class="container">
+        <header class="container" role="banner">
             <div class="inner">
                 <div id="sub-logo" itemscope itemtype="http://schema.org/Organization">
                     <a class="site-logo" href="https://www.ebsco.com" itemprop="url">
@@ -80,11 +85,39 @@
                     </a>
                 </div>
             </div>
+
+            <nav class="container" role="navigation" aria-label="primary navigation">
+                <ul>
+                    <li>navigation</li>
+               </ul>
+            </nav>
+
         </header>
         
         <section class="container">
             <div class="inner">
-                <div class="contact-content content size1of1">
+                
+                <main role="main" aria-labelledby="ariaPageTitle" class="contact-content content size1of1 size10of16">
+                    <h1 id="ariaPageTitle">Page Main Purpose</h1>
+                    <p>Primary description of the page.</p>
+                    <p>Primary description of the page.</p>
+                    <p>Primary description of the page.</p>
+                    <p>Primary description of the page.</p>
+                    <p>Primary description of the page.</p>
+                    <p>Primary description of the page.</p>
+                    <p>Primary description of the page.</p>
+                    <p>Primary description of the page.</p>
+                    <p>Primary description of the page.</p>
+                    <p>Primary description of the page.</p>
+                    <p>Primary description of the page.</p>
+                    <p>Primary description of the page.</p>
+                    <p>Primary description of the page.</p>
+                    <p>Primary description of the page.</p>
+                </main>
+
+                <aside class="content shift1of16 size5of16" role="complementary">
+                  <h2>Sidebar</h2>
+                  <p>Complementary content</p>
                     <h3><span itemprop="name">EBSCO Information Services</span> HQ</h3>
                     <p itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress">
                         <span itemprop="streetAddress">10 Estes Street</span><br>
@@ -98,38 +131,68 @@
                     </p>
                     <img itemprop="image" src="/apps/portal/img/headquarters.jpg" alt="EBSCO Information Services HQ" />
                     <p><a href="/offices">See all EBSCO Information Services worldwide offices&nbsp;»</a></p>
+                </aside>
+
+
+            </div>
+        </section>
+
+        <section role="region" aria-label="this aria label" class="container">
+            <div class="inner">
+                <div class="content size1of1">
+                    <h1>What this section's heading says</h1>
+                    <p>content here.</p>
+                </div>
+
+                <div class="content size1of1">
+                    <h1>What this section's heading says</h1>
+                    <p>content here.</p>
+                </div>
+
+                <div class="content size1of1">
+                    <h1>What this section's heading says</h1>
+                    <p>content here.</p>
                 </div>
             </div>
         </section>
+
         
         <!-- should this element be 'footer' ? -->
         <section class="container" id="footer-bottom">
             <div class="inner">
-                <!-- omitted language switcher code/markup for now -->
-                <ul id="footer-social" class="group" itemscope itemtype="http://schema.org/Organization">
-                    <link itemprop="url" href="https://www.ebsco.com">
-                    <meta itemprop="name" content="EBSCO Information Services, Inc." />
-                    <li class="facebook">
-                        <a itemprop="sameAs" href="https://www.facebook.com/EBSCOInfoServices" target="_blank" class="ga" data-ga="{ "category" : "Social", "action" : "click", "label" : "Facebook"}"><div>like us on facebook</div></a>
-                    </li>   
-                    <li class="twitter">
-                        <a itemprop="sameAs" href="https://twitter.com/EBSCO" target="_blank" class="ga" data-ga="{ "category" : "Social", "action" : "click", "label" : "Twitter"}"><div>follow us on twitter</div></a>
-                    </li>
-                    <li class="google">
-                        <a itemprop="sameAs" href="https://plus.google.com/+ebscohostcom/posts" target="_blank" class="ga" data-ga="{ "category" : "Social", "action" : "click", "label" : "Google Plus"}"><div>add us to your google+ circle</div></a>
-                    </li>
-                    <li class="linkedin">
-                        <a itemprop="sameAs" href="https://www.linkedin.com/company/7777?trk=tyah" target="_blank" class="ga" data-ga="{ "category" : "Social", "action" : "click", "label" : "LinkedIn"}"><div>connect with us on linkedin</div></a>
-                    </li>
-                    <li class="youtube">
-                        <a itemprop="sameAs" href="https://www.youtube.com/user/ebscopublishing" target="_blank" class="ga" data-ga="{ "category" : "Social", "action" : "click", "label" : "YouTube"}"><div>see what we're up to on youtube</div></a>
-                    </li>
-                    <li class="pinterest">
-                        <a itemprop="sameAs" href="https://pinterest.com/ebsco" target="_blank" class="ga" data-ga="{ "category" : "Social", "action" : "click", "label" : "pinterest"}"><div>follow us on pinterest</div></a>
-                    </li>
-                </ul>
+                <footer role="contentinfo" class="content">
+                    <!-- omitted language switcher code/markup for now -->
+                    <nav class="container" role="navigation" aria-label="footer navigation">
+                        <ul>
+                            <li>footer links</li>
+                        </ul>
+                    </nav>
+                    <ul id="footer-social" class="group" itemscope itemtype="http://schema.org/Organization">
+                        <link itemprop="url" href="https://www.ebsco.com">
+                        <meta itemprop="name" content="EBSCO Information Services, Inc." />
+                        <li class="facebook">
+                            <a itemprop="sameAs" href="https://www.facebook.com/EBSCOInfoServices" target="_blank" class="ga" data-ga="{ "category" : "Social", "action" : "click", "label" : "Facebook"}"><div>like us on facebook</div></a>
+                        </li>   
+                        <li class="twitter">
+                            <a itemprop="sameAs" href="https://twitter.com/EBSCO" target="_blank" class="ga" data-ga="{ "category" : "Social", "action" : "click", "label" : "Twitter"}"><div>follow us on twitter</div></a>
+                        </li>
+                        <li class="google">
+                            <a itemprop="sameAs" href="https://plus.google.com/+ebscohostcom/posts" target="_blank" class="ga" data-ga="{ "category" : "Social", "action" : "click", "label" : "Google Plus"}"><div>add us to your google+ circle</div></a>
+                        </li>
+                        <li class="linkedin">
+                            <a itemprop="sameAs" href="https://www.linkedin.com/company/7777?trk=tyah" target="_blank" class="ga" data-ga="{ "category" : "Social", "action" : "click", "label" : "LinkedIn"}"><div>connect with us on linkedin</div></a>
+                        </li>
+                        <li class="youtube">
+                            <a itemprop="sameAs" href="https://www.youtube.com/user/ebscopublishing" target="_blank" class="ga" data-ga="{ "category" : "Social", "action" : "click", "label" : "YouTube"}"><div>see what we're up to on youtube</div></a>
+                        </li>
+                        <li class="pinterest">
+                            <a itemprop="sameAs" href="https://pinterest.com/ebsco" target="_blank" class="ga" data-ga="{ "category" : "Social", "action" : "click", "label" : "pinterest"}"><div>follow us on pinterest</div></a>
+                        </li>
+                    </ul>
+                </footer>
             </div>
         </section>
     </div>
+
 </body>
 </html>
