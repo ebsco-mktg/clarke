@@ -65,7 +65,7 @@
     ========================================
 */
     *, *:before, *:after {
-        box-sizing: border-box;
+        /*box-sizing: border-box;*/
     }
     .page  {
         position: relative;
@@ -91,7 +91,9 @@
 */
     
     .content {
+        box-sizing: border-box;
         float:left;
+        padding: 0 10px;
     }
     
 /*  Removed in Clarke (box model)
@@ -567,5 +569,6 @@
     .content > .inner:after {
         clear: both;
     }
+
 
 
