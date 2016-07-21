@@ -504,14 +504,14 @@ var VALIDATE = (function ( pub ) {
     
 	// page scripting
     // need to check the jQuery is loaded
-    EIS.loadOnce( 'jQuery', function( {
+    EIS.loadOnce( 'jQuery', function() {
     	pub.populateSelect();
     	
-	// event binding
-	$('#market').change(function(){
-	    pub.populateSelect();
-	});	
-    }));
+		// event binding
+		$('#market').change(function(){
+		    pub.populateSelect();
+		});
+	});
     
 	
 	// binds validation to click event of submit buttons
