@@ -449,7 +449,7 @@ var VALIDATE = (function ( pub ) {
            
         if(cat=='academic'){
             $('#job_role').removeClass("disabled");
-            $('#job_role').html('<option value="" selected="selected">Job Role*</option>')
+            $('#job_role').html('<option value="" selected="selected">Job Role*</option>');
                 academicRoles.forEach(function(t) {
                 $('#job_role').append('<option>'+t+'</option>');
                 
@@ -458,7 +458,7 @@ var VALIDATE = (function ( pub ) {
   
         if(cat=='medical'){
             $('#job_role').removeClass("disabled");
-            $('#job_role').html('<option value="" selected="selected">Job Role*</option>')
+            $('#job_role').html('<option value="" selected="selected">Job Role*</option>');
                 medicalRoles.forEach(function(t) { 
                 $('#job_role').append('<option>'+t+'</option>');
             });
@@ -466,7 +466,7 @@ var VALIDATE = (function ( pub ) {
   
         if(cat=='corporation'){
             $('#job_role').removeClass("disabled");
-            $('#job_role').html('<option value="" selected="selected">Job Role*</option>')
+            $('#job_role').html('<option value="" selected="selected">Job Role*</option>');
                 corporationRoles.forEach(function(t) { 
                 $('#job_role').append('<option>'+t+'</option>');
             });
@@ -474,7 +474,7 @@ var VALIDATE = (function ( pub ) {
   
         if(cat=='school'){
             $('#job_role').removeClass("disabled");
-            $('#job_role').html('<option value="" selected="selected">Job Role*</option>')
+            $('#job_role').html('<option value="" selected="selected">Job Role*</option>');
                 schoolRoles.forEach(function(t) { 
                 $('#job_role').append('<option>'+t+'</option>');
             });
@@ -482,7 +482,7 @@ var VALIDATE = (function ( pub ) {
   
         if(cat=='public-library'){
             $('#job_role').removeClass("disabled");
-            $('#job_role').html('<option value="" selected="selected">Job Role*</option>')
+            $('#job_role').html('<option value="" selected="selected">Job Role*</option>');
                 publicRoles.forEach(function(t) {
                 $('#job_role').append('<option>'+t+'</option>');
             });
@@ -490,7 +490,7 @@ var VALIDATE = (function ( pub ) {
   
         if(cat=='government'){
             $('#job_role').removeClass("disabled");
-            $('#job_role').html('<option value="" selected="selected">Job Role*</option>')
+            $('#job_role').html('<option value="" selected="selected">Job Role*</option>');
                 governmentRoles.forEach(function(t) {
                 $('#job_role').append('<option>'+t+'</option>');
             });
@@ -500,16 +500,19 @@ var VALIDATE = (function ( pub ) {
             $('#job_role').html('<option value="" selected="selected">Job Role*</option>');
         } 
       }
-  	} 
+  	};
     
 	// page scripting
-    
-	pub.populateSelect();
-    
-    // event binding
-    $('#market').change(function(){
+    // need to check the jQuery is loaded
+    EIS.loadOnce( 'jQuery', function( {
     	pub.populateSelect();
-    });	
+    	
+	// event binding
+	$('#market').change(function(){
+	    pub.populateSelect();
+	});	
+    }));
+    
 	
 	// binds validation to click event of submit buttons
 	// pass in optional var to suppress default submit
