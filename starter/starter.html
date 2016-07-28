@@ -56,63 +56,92 @@
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
  
     <!--framework-->
-    <link href="/apps/global/clarke/css/source/core.css" />
+    <link rel="stylesheet" href="https://www.ebsco.com/apps/global/clarke/css/source/core.css" />
     <!-- switch from /SOURCE to minified version once CLARKE is stable 
-    <link href="/apps/global/clarke/css/eis-core.min.css" /> -->
+    <link rel="stylesheet" href="https://www.ebsco.com/apps/global/clarke/css/eis-core.min.css" /> -->
     
-    <script src="/apps/global/clarke/js/source/eis.js"></script>
+    <script src="https://www.ebsco.com/apps/global/clarke/js/source/eis.js"></script>
     <!-- switch from /SOURCE to minified version once CLARKE is stable
-    <script src="/apps/global/clarke/js/eis.js"></script> -->
+    <script src="https://www.ebsco.com/apps/global/clarke/js/eis.js"></script> -->
 
     <!--site styles-->
-    <link href="css/main.css" />
+    <link rel="stylesheet" href="css/main.css" />
     
     <!--favicon if needed-->
     <link rel="shortcut icon" href="/home/files/favicon.ico" />
 
     <!-- enhancements, fallbacks-->
-    <script src="/apps/global/vendor/modernizr-2.6.2.min.js"></script>
-    <!--[if lt IE 9]><script type="text/javascript" src="/apps/global/vendor/css3-mediaqueries.js"></script><![endif]-->
+    <script src="https://www.ebsco.com/apps/global/vendor/modernizr-2.6.2.min.js"></script>
+    <!--[if lt IE 9]><script type="text/javascript" src="https://www.ebsco.com/apps/global/vendor/css3-mediaqueries.js"></script><![endif]-->
 
 </head>
 <body>
     <div id="starterSite" class="page_starter-template">
-        <header class="container" role="banner">
+        
+        <header id="siteHeader" class="special-container">
             <div class="inner">
-                <div id="sub-logo" itemscope itemtype="http://schema.org/Organization">
-                    <a class="site-logo" href="https://www.ebsco.com" itemprop="url">
-                        <img src="/files/images/ebsco_logo.png" alt="EBSCO" itemprop="logo" />
+            
+                <div class="site-id" itemscope itemtype="http://schema.org/Organization">
+                    <a class="site-id_logo" href="https://www.ebsco.com" itemprop="url">
+                        <img src="https://www.ebsco.com/files/images/ebsco_logo.png" alt="EBSCO" itemprop="logo" />
                     </a>
                 </div>
+                
+                <div class="toolbar group">
+                    
+                    <nav class="toolbar_nav" aria-label="Primary Navigation" role="navigation">
+                        <a class="toolbar_menu-btn" href="" aria-haspopup="true" aria-expanded="false">show menu</a>
+                        <ul>
+                            
+                            <!-- ### level 1 items ### -->
+                            <li  class="has-submenu">
+                                <a href="{level-1_link}" aria-haspopup="true" aria-expanded="false">{level-1_name}</a>
+                                <ul>
+                                    <li><a href="{level-2_link}">{level-2_name}</a></li>
+                                    <li><a href="{level-2_link}">{level-2_name}</a></li>
+                                    <li><a href="{level-2_link}">{level-2_name}</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="{level-1_link}">{level-1_name}</a></li>
+                            
+                            <!-- ### utility items ### -->
+                            <li class="utility-link"><a href="{utility_link}">{utility_name}</a></li>
+                            <li class="utility-link"><a href="{utility_link}">{utility_name}</a></li>
+                            
+                            <!-- ### cta item ### -->
+                            <li class="toolbar_cta"><a href="{cta_link}">{cta_name}</a></li>
+                        </ul>
+                    </nav>
+                    
+                    <div class="toolbar_utility">
+                        <ul class="toolbar_links">
+                            <!-- ### utility items ### -->
+                            <li class="utility-link"><a href="{utility_link}">{utility_name}</a></li>
+                            <li class="utility-link"><a href="{utility_link}">{utility_name}</a></li>
+                        </ul>
+                    </div>
+                        
+                    <a class="toolbar_search" href="{search_link}">{search_name}</a>
+                    
+                </div>
             </div>
-
-            <nav class="container" role="navigation" aria-label="primary navigation">
-                <ul>
-                    <li>navigation</li>
-               </ul>
-            </nav>
-
         </header>
+        <div id="navOverlay"></div>
         
         <section class="container">
             <div class="inner">
                 
+                <!-- example breadcrumb -->
+                <div class="content breadcrumb-content size1of1">
+                    <p style="font-size: 12px;color:rgb(200,200,200)">Home >> Level 1 >> Level 2</p>
+                </div>
+                
                 <main role="main" aria-labelledby="ariaPageTitle" class="contact-content content size1of1 size10of16">
                     <h1 id="ariaPageTitle">Page Main Purpose</h1>
-                    <p>Primary description of the page.</p>
-                    <p>Primary description of the page.</p>
-                    <p>Primary description of the page.</p>
-                    <p>Primary description of the page.</p>
-                    <p>Primary description of the page.</p>
-                    <p>Primary description of the page.</p>
-                    <p>Primary description of the page.</p>
-                    <p>Primary description of the page.</p>
-                    <p>Primary description of the page.</p>
-                    <p>Primary description of the page.</p>
-                    <p>Primary description of the page.</p>
-                    <p>Primary description of the page.</p>
-                    <p>Primary description of the page.</p>
-                    <p>Primary description of the page.</p>
+                    <img src="//placekitten.com/1000/400" style="width:100%;" />
+                    <p>Mea Stet consequat Verena est cum suam in rei civibus laude clamaverunt donavit beneficio. Ardalio nos in modo invenit Boreas ingreditur id Apollonius non ait Cumque autem Apolloni dicere. Quidam advenerunt ad per dicis Deducitur potest in deinde vero quo alacres ad te. Quod una litus Ephesum peteret sua confusus ait. Interveniens sed esse in modo invenit Boreas quam dicentes Is hendrerit ad quia. Mirantur deo adoptavit cum magna duobus consolabor potest ei, fige omnium in deinde cepit roseo ruens sed haec.</p>
+                    <p>Tyro sed dominum vidit Dionysiadi Apollonius in modo invenit iuvenem in fuerat se ad te sed haec. Accepit corpus obiecta duram famulam sum illum in. Tollite fit ecclesiam mittam est se in modo cavendum es. Apollonii appropinquat tation ulterius quod ait Cumque persequatur sic, mirantur deo hanc enim formam speciosam vale donavit potest. Ite in lucem exempli paupers coniunx in. Is hendrerit ad per te ad quia ei quoque luctare non potentiae. Dianae feminis introeunte instat manu fueris in lucem in lucem in deinde cupis ei. Nuda dulcis a lenoni incommunicabile in deinde plectrum anni ipsa hospes.</p>
+                    <p>Exire est se in deinde cupis hominem eam in rei completo litus vita Apolloni figitur acquievit. Spero mihi esse more filiam rex cum obiectum ait regem Boreas ingreditur id. Casus inferioribus civitatis ne alicuius tuo est in. Quae ait Cumque persequatur sic nec appellarer in lucem in fuerat. Permiseras enim formam cum magna anima haec, recedite fit manibus individuationis omnibus amor ea. V signa in deinde vero diam ', dona abstulit meis commendet' permansit in lucem. Dionysiadem patrem dolor invenerit adduci in lucem concitaverunt in modo genito in modo cavendum es est se in. Supponite facultatibus actum eum ego esse in. Tharsis eum filiam sum illum ille advenit ego dum animae tibi confluentiam Scelerata. Volo deus Hellenici silentio 'genus ei sed esse deprecor possit caput rex Stranguillio eam sed eu fides piissimi sibi ambulare manu impetum ideo. Coepit contingere vasculo ait mea ego esse haec. Proiciens te ad nomine Stranguillio sit audivit mihi cum unde meae ceroma fronte comico hac recipere in. Scelerata nunc meae puer est in.</p>
                 </main>
 
                 <aside class="content shift1of16 size5of16" role="complementary">
@@ -129,7 +158,7 @@
                         Phone: (205) 991-6600<br>
                         Toll-Free (USA &amp; Canada): (800) 633-4604
                     </p>
-                    <img itemprop="image" src="/apps/portal/img/headquarters.jpg" alt="EBSCO Information Services HQ" />
+                    <img itemprop="image" src="/apps/portal/img/headquarters.jpg" alt="EBSCO Information Services HQ" style="width:100%;" />
                     <p><a href="/offices">See all EBSCO Information Services worldwide offices&nbsp;»</a></p>
                 </aside>
 
@@ -155,7 +184,6 @@
                 </div>
             </div>
         </section>
-
         
         <!-- should this element be 'footer' ? -->
         <section class="container" id="footer-bottom">
@@ -193,6 +221,6 @@
             </div>
         </section>
     </div>
-
+    <script src="js/main.js"></script>
 </body>
 </html>

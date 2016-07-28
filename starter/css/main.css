@@ -1,1 +1,418 @@
+/*
+    ========================================
+    ++        STARTER CSS PATTERNS        ++
+    ========================================
+    
+    Table of Contents
+    
+        ::Site Main Navigation
+    
+ */
+
+
+/*
+    ========================================
+        ::Site Main Navigation
+    ========================================
+        
+    USAGE
+    ========================================
+    Pattern for each site's main header and main navigation sections
+    
+    The below markup is assumed to be used; changing class names, ids, or aria properties will impact css and js functionality
+    
+    Framework is not required
+    
+
+    MARKUP:
+    ========================================
+    <header id="siteHeader" class="special-container">
+        <div class="inner">
+        
+            <div class="site-id" itemscope itemtype="http://schema.org/Organization">
+                <a class="site-id_logo" href="{site_root}" itemprop="url">
+                    <img src="{site_logo}" alt="{site_name}" itemprop="logo" />
+                </a>
+            </div>
+            
+            <div class="toolbar group">
+                
+                <nav class="toolbar_nav" aria-label="Primary Navigation" role="navigation">
+                    <a class="toolbar_menu-btn" href="" aria-haspopup="true" aria-expanded="false">show menu</a>
+                    <ul>
+                        
+                        <!-- ### level 1 items ### -->
+                        <li  class="has-submenu">
+                            <a href="{level-1_link}" aria-haspopup="true" aria-expanded="false">{level-1_name}</a>
+                            <ul>
+                                <li><a href="{level-2_link}">{level-2_name}</a></li>
+                                <li><a href="{level-2_link}">{level-2_name}</a></li>
+                                <li><a href="{level-2_link}">{level-2_name}</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{level-1_link}">{level-1_name}</a></li>
+                        
+                        <!-- ### utility items ### -->
+                        <li class="utility-link"><a href="{utility_link}">{utility_name}</a></li>
+                        <li class="utility-link"><a href="{utility_link}">{utility_name}</a></li>
+                        
+                        <!-- ### cta item ### -->
+                        <li class="toolbar_cta"><a href="{cta_link}">{cta_name}</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="toolbar_utility">
+                    <ul class="toolbar_links">
+                        <!-- ### utility items ### -->
+                        <li class="utility-link"><a href="{utility_link}">{utility_name}</a></li>
+                        <li class="utility-link"><a href="{utility_link}">{utility_name}</a></li>
+                    </ul>
+                </div>
+                    
+                <a class="toolbar_search" href="{search_link}">{search_name}</a>
+                
+            </div>
+        </div>
+    </header>
+    <div id="navOverlay"></div>
+
+
+    NOTES:
+    ========================================
+    Does not use framework grid system (can switch from mobile to desktop at any required mediaquery)
+    
+    Tested with css normalizing/reset (not included here)
+    
+    Site search included here is for positioning only; search functionality and styles must be added separately
+    
+    CSS rules organized into following sections:
+        @mobile (default)
+            PARENT NAV CONTAINER
+            SITE LOGO
+            TOOLBAR CONTAINER
+            MAIN NAVIGATION ITEMS (LEVEL 1)
+            CALL TO ACTION (CTA)
+            SITE SEARCH
+        @desktop
+            SITE LOGO
+            TOOLBAR CONTAINER
+            MAIN NAVIGATION ITEMS (LEVEL 1)
+            SUBMENU NAVIGATION ITEMS (LEVEL 2)
+            CALL TO ACTION (CTA)
+            UTILITY ITEMS
+            SITE SEARCH
+*/
+
+/* ##### PARENT NAV CONTAINER ##### */
+    /* because we needed to remove the positioning rule on the '.container', we need to re-apply inner width constraints */
+    .special-container {} 
+    .special-container > .inner {
+        margin: auto;
+        max-width: 1280px;
+        min-width: 240px;
+        padding: 0 10px;
+    }
+
+
+/* ##### SITE LOGO ##### */
+    .site-id {
+        display: block;
+        margin: auto;
+        /* width should match the logo */
+        width: 129px;
+    }
+        .site-id_logo {
+            display: block;
+            line-height: 60px;
+        }
+        .site-id_logo img {
+            vertical-align: middle;
+        }
+
+
+/* ##### TOOLBAR CONTAINER ##### */
+    .toolbar { }
+    
+    .toolbar a {
+        text-decoration: none;
+    }
+
+
+/* ##### MAIN NAVIGATION ITEMS (LEVEL 1) ##### */
+    .toolbar_nav {
+        font: 400 16px/1.2 "myriad-pro-n4","myriad-pro",sans-serif;
+    }
+        .toolbar_nav a {
+            border-bottom: 1px solid #5d5d5d;
+            border-top: 1px solid #5d5d5d;
+            color: #fff;
+            display: block;
+            margin-top: -1px;
+            padding: 0 10px;
+        }
+        .toolbar_nav > ul {
+            background: #454545;
+            bottom: 0;
+            left: -100%;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            right: 100%;
+            transition: all 0.3s;
+            top: 60px;
+            z-index: 2;
+        }
+        a.toolbar_menu-btn {
+            background: url(//www.ebsco.com/apps/global/clarke/css/img/SingleMobileMenu.png) 50% 50% no-repeat;
+            border: none;
+            color: transparent;
+            height: 26px;
+            left: 10px;
+            margin: 0;
+            position: absolute;
+            top: 20px;
+            width: 26px;
+        }
+        .toolbar_menu-btn + ul.isOpen {
+            left: 0;
+            right: 20%;
+            transition: all 0.3s ease-out;
+        }
+        
+        .toolbar_nav li {
+            line-height: 60px;
+        }
+        
+        .toolbar_nav .utility-link {
+            background: #5d5d5d;
+        }
+        .toolbar_nav .utility-link a {
+            border-color: rgb( 100, 100, 100 );
+        }
+
+
+    /* hide submenus and top-right utility items at mobile size */
+    .has-submenu ul,
+    .toolbar_utility {
+        display: none;
+    }
+
+
+/* ##### CALL TO ACTION (CTA) ##### */
+    .toolbar_nav .toolbar_cta {
+        background: rgb(25, 166, 73);
+    }
+    .toolbar_nav .toolbar_cta a,
+    .toolbar_nav .toolbar_cta a:focus,
+    .toolbar_nav .toolbar_cta a:hover {
+        color: #fff;
+        display: block;
+        margin: 0;
+        padding: 0 20px;
+        text-align: center;
+        text-decoration: none;
+        transition: all 0.35s ease-in-out;
+    }
+        .toolbar_nav .toolbar_cta a:focus,
+        .toolbar_nav .toolbar_cta a:hover {
+            background: rgba(25, 166, 73, 0.8);
+        }
+
+
+/* ##### SITE SEARCH ##### */
+    .toolbar_search {
+        background: url(//www.ebsco.com/apps/global/clarke/css/img/search-icon-hi.png) 0 0 no-repeat transparent;
+        color: transparent;
+        height: 26px;
+        position: absolute;
+        right: 10px;
+        top: 20px;
+        width: 26px;
+    }
+        .toolbar_search:focus,
+        .toolbar_search:hover { 
+            border-bottom: 0px; 
+        }
+
+
+/* ##### BACKGROUND OVERLAY ON MOBILE MENU ACTIVE ##### */
+    #navOverlay {
+        background: rgba( 255, 255, 255, 0.75 );
+        display: none;
+        height: 100%;
+        position: absolute;
+        width: 100%;
+        z-index: 1;
+    }
+
+
+
+
+/* adjust the breakpoint size as needed */
+@media screen and (min-width: 940px) {
+    
+    /* ##### SITE LOGO ##### */
+        .site-id { 
+            margin: 0;
+        }
+    
+    
+    /* ##### TOOLBAR CONTAINER ##### */
+        .toolbar {
+            margin: auto;
+            position: relative;
+        }
+    
+    
+    /* ##### MAIN NAVIGATION ITEMS (LEVEL 1) ##### */
+        .toolbar_nav .toolbar_menu-btn,
+        .toolbar_nav .utility-link,
+        #navOverlay {
+            display: none;
+        }
+        
+        .toolbar_nav a {
+            border: none;
+            color: #5d5d5d;
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+        }
+            .toolbar_nav > ul > li:focus > a,
+            .toolbar_nav > ul > li:hover > a,
+            .toolbar_nav a:focus,
+            .toolbar_nav a:hover {
+                text-decoration: underline;
+            }
+        .toolbar_nav ul {
+            background: none;
+            bottom: auto;
+            left: auto;
+            margin: 0;
+            position: relative;
+            right: auto;
+            top: auto;
+            z-index: auto;
+        }
+
+
+    /* ##### SUBMENU NAVIGATION ITEMS (LEVEL 2) ##### */    
+        .toolbar_nav > ul > li {
+            display: inline-block;
+            line-height: 60px;
+            list-style: none;
+            padding: 0;
+        }
+        .toolbar_nav > ul > li > a {
+            margin: 0 32px 0 0;
+        }
+ 
+        /* dropdown */
+        .has-submenu {
+            position: relative;
+        }
+        .has-submenu > a::after {
+            border-width: 5px 0 5px 5px;
+            border-color: transparent transparent transparent rgb(175,175,175);
+            border-style: solid;
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 24px;
+            right: 22px;
+            transition: all 0.15s ease-in-out;
+        }
+        .has-submenu:focus > a::after,
+        .has-submenu:hover > a::after {
+            -moz-transform: translate(-1px) rotate(90deg);
+            -ms-transform: translate(-1px) rotate(90deg);
+            -webkit-transform: translate(-1px) rotate(90deg);
+            transform: translate(-1px) rotate(90deg);
+        }
+        .has-submenu ul {
+            background: #454545;
+            display: block;
+            list-style: none;
+            margin: 0;
+            max-height: 0;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            transition: all 0.35s ease-out;
+            width: 300px;
+            z-index: 1;
+        }
+        li.isOpen > ul,
+        .has-submenu:focus > ul,
+        .has-submenu:hover > ul,
+        .has-submenu a:focus + ul,
+        .has-submenu a:hover + ul {
+            display: block;
+            max-height: 1000px;
+            transition: all 0.35s ease-in;
+            z-index: 2;
+        }
+        .has-submenu li {
+            border-bottom: 1px solid #5d5d5d;
+            border-top: 1px solid #5d5d5d;
+            margin-top: -1px;
+        }
+        .has-submenu ul a {
+            color: #fff;
+            display: block;
+            padding: 0 10px;
+        }
+        .has-submenu ul a:focus,
+        .has-submenu ul a:hover {
+            text-decoration: none;
+        }
+ 
+    
+    /* ##### CALL TO ACTION (CTA) ##### */
+        .toolbar_utility,
+        .toolbar_cta {
+            display: inline-block;
+            float: right;
+        }
+        
+        .toolbar_nav .toolbar_cta {
+            margin: 15px 60px 0 0;
+        }
+        .toolbar_cta a {
+            line-height: 30px;
+        }
+    
+    /* ##### UTILITY ITEMS ##### */
+        .toolbar_links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            /* height of logo influences this position; logo is 48px height */
+            top: -48px;
+            right: 0;
+        }
+            .toolbar_links .utility-link {
+                display: inline-block;
+                margin: 0 0 0 20px;
+            }
+            .toolbar_links .utility-link a {
+                color: #5d5d5d;
+                font: 400 14px/1.2 "myriad-pro-n4","myriad-pro",sans-serif;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+            .toolbar_links .utility-link a:focus,
+            .toolbar_links .utility-link a:hover {
+                text-decoration: underline;
+            }
+
+    /* ##### SITE SEARCH ##### */
+        .toolbar_search {
+            top: 16px;
+        }
+    
+    
+}
 
