@@ -6,6 +6,7 @@
     Table of Contents
     
         ::Site Main Navigation
+        ::Site Breadcrumbs
     
  */
 
@@ -143,15 +144,15 @@
         font: 400 16px/1.2 "myriad-pro-n4","myriad-pro",sans-serif;
     }
         .toolbar_nav a {
-            border-bottom: 1px solid #5d5d5d;
-            border-top: 1px solid #5d5d5d;
+            border-bottom: 1px solid #454545;
+            border-top: 1px solid #454545;
             color: #fff;
             display: block;
             margin-top: -1px;
             padding: 0 10px;
         }
         .toolbar_nav > ul {
-            background: #454545;
+            background: #2a2a2a;
             bottom: 0;
             left: -100%;
             list-style: none;
@@ -168,7 +169,7 @@
             border: none;
             color: transparent;
             height: 26px;
-            left: 10px;
+            left: 0;
             margin: 0;
             position: absolute;
             top: 20px;
@@ -182,6 +183,10 @@
         
         .toolbar_nav li {
             line-height: 60px;
+        }
+        
+        .toolbar_nav li a:hover {
+            background: #454545;
         }
         
         .toolbar_nav .utility-link {
@@ -271,7 +276,9 @@
         #navOverlay {
             display: none;
         }
-        
+        .toolbar_nav li a:hover {
+            background: none;
+        }        
         .toolbar_nav a {
             border: none;
             color: #5d5d5d;
@@ -331,7 +338,7 @@
             transform: translate(-1px) rotate(90deg);
         }
         .has-submenu ul {
-            background: #454545;
+            background: #2a2a2a;
             display: block;
             list-style: none;
             margin: 0;
@@ -354,8 +361,8 @@
             z-index: 2;
         }
         .has-submenu li {
-            border-bottom: 1px solid #5d5d5d;
-            border-top: 1px solid #5d5d5d;
+            border-bottom: 1px solid #454545;
+            border-top: 1px solid #454545;
             margin-top: -1px;
         }
         .has-submenu ul a {
@@ -365,6 +372,7 @@
         }
         .has-submenu ul a:focus,
         .has-submenu ul a:hover {
+            background: #454545;
             text-decoration: none;
         }
  
@@ -415,4 +423,62 @@
     
     
 }
+
+/*
+    ========================================
+        ::Site Breadcrumbs
+    ========================================
+        
+    USAGE
+    ========================================
+    Pattern for breadcrumbs
+    
+    The below markup is assumed to be used; changing class names will impact css functionality
+    
+    Framework is not required
+    
+
+    MARKUP:
+    ========================================
+    <div class="content breadcrumb-content size1of1">
+        <p>
+            <a class="bc_page" href="#home">Home</a> 
+            <span class="bc_separator">&raquo;</span> 
+            <a class="bc_page" href="#level-1">Level 1</a> 
+            <span class="bc_separator">&raquo;</span> 
+            <span class="bc_current">Level 2</span>
+        </p>
+    </div>
+
+
+
+    NOTES:
+    ========================================
+    Does not use framework grid system (can switch from mobile to desktop at any required mediaquery)
+    
+    Tested with css normalizing/reset (not included here)
+    
+*/
+
+.breadcrumb-content p,
+.breadcrumb-content a {
+    color: #969696;
+    font: 400 14px/1.2 "myriad-pro-n4","myriad-pro",sans-serif;
+    text-decoration: none;
+}
+    .breadcrumb-content a:hover {
+        text-decoration: underline;
+    }
+.breadcrumb-content .bc_separator {
+    padding: 0 4px;
+}
+.breadcrumb-content .bc_current {
+    color: #525252;
+}
+
+
+
+
+
+
 
