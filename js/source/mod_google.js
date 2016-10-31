@@ -12,9 +12,19 @@
  * enables throwing ga social events for elements classed "gaSocial" with data attr "ga" in json format:
  * 		<a class="gaSocial" href="" data-ga='{ "socialnetwork" : "social network string, i.e. facebook", "socialaction" : "social network action, i.e. share"}'>
  * 
+ * UPDATE 26-oct-2016
+ * 		+ added CONST for the "all sites combined" global GA profile
+ * 		+ added (changed) CONST for allowed domain list for linker (ADA version used EIS.eisDomains which will now be removed)
+ * 		+ changed init to only add linker plugin for the global GA profile
+ * 		+ changed init function to check passed in profile ids for global GA profile
+ * 
  */
 var GOOGLE = (function( pub ) {
 
+	// global GA profile id "all sites combined"
+	var CONST_globalProfileId = 'UA-63632005-1',
+		CONST_eisDomains = [ 'ebsco.com', 'ebscohost.com', 'dynamed.com', 'ebscoind.com' ];
+	
 	// private functions
 	
 	function setupGALink( $anElem ) {
@@ -82,23 +92,91 @@ var GOOGLE = (function( pub ) {
 			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 		}
 		
-		// now check if profileID passed in; 
-		// if not assume ga script has already done the initial page view
-		// otherwise do the typical ga init with the profile id
+		// possible scenarios:
+		
+		// 		no profile id passed in
+		// 			no init needed
+		// 		1 profile id passed in, IS the global profile id
+		// 			no init needed
+		
+		// 		1 profile id passed in, NOT the global profile id
+		// 			normal init profileID
+		// 		2 profile ids passed in, SECOND is the global profile id
+		// 			normal init profileID
+		
+		// 		2 profile ids passed in, NONE are the global profile id
+		// 			normal init profileID and secondProfileID
+		// 		2 profile ids passed in, FIRST is the global profile id
+		// 			normal init secondProfileID
+		
 		if ( hasProfileID ) {
+			// profileID exists; secondProfileID unk
 			
-			// update with appropriate ga profile id and web domain
-			ga( 'create', profileID, 'auto' );
-			
-			// throws the first pageview on load
-			ga( 'send', 'pageview' );
+			if ( profileID === CONST_globalProfileId ) {
+				// profileID exists, global; secondProfileID unk
 
-			// if we're sending to a second profile id, do that here
+				if ( hasSecondProfileID ) {
+					// profileID exists, global; secondProfileID exists
+					if ( secondProfileID !== CONST_globalProfileId ) {
+						// profileID exists, global; secondProfileID exists, unique
+						// make the first profile id use the non-global id
+						profileID = secondProfileID;
+						// second profile id is not needed
+						hasSecondProfileID = false;
+					} else {
+						// profileID exists, global; secondProfileID exists, global
+						// passed profile ids not needed
+						hasProfileID = false;
+						hasSecondProfileID = false;
+					}
+				} else {
+					// profileID exists, global; secondProfileID NOT passed
+					// no need to do anything with the profile id
+					hasProfileID = false;
+				}
+				
+			} else {
+				// profileID exists, unique; secondProfileID unk
+				
+				if ( hasSecondProfileID ) {
+					// profileID exists, unique; secondProfileID exists
+					if ( secondProfileID !== CONST_globalProfileId ) { 
+						// profileID exists, unique; secondProfileID exists, unique
+						// keep both checks as we will process both profile ids
+					} else {
+						// profileID exists, unique; secondProfileID exists, global
+						// only first profile id is needed
+						hasSecondProfileID = false;
+					}
+				} else {
+					// profileID exists, unique; secondProfileID NOT passed
+					// keep everything as is
+				}
+			}
+			
+		} else {
+			// profileID NOT passed; secondProfileID NOT passed
+			// keep everything as is
+		}
+		
+		if ( hasProfileID ) {
+			// process/init first unique profile
+			ga( 'create', profileID, 'auto' );
+			ga( 'send', 'pageview' );
+			
 			if ( hasSecondProfileID ) {
-				ga( 'create', secondProfileID, 'auto', {'name': 'newTracker'} );		
+				// process the second unique profile
+				ga( 'create', secondProfileID, 'auto', { 'name': 'newTracker' } );
 				ga( 'newTracker.send', 'pageview' );
 			}
 		}
+		
+		// now process the global profile id
+		ga( 'create', CONST_globalProfileId, 'auto', { 'name': 'globalTracker', 'allowLinker': true } );
+		ga( 'globalTracker.send', 'pageview' );
+		ga( 'require', 'linker' );
+		ga( 'linker:autoLink', CONST_eisDomains );
+		
 		
 		// now we can add our own bindings because we know ga is set up and running
 		// bindings

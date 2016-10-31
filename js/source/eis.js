@@ -59,7 +59,7 @@ var EIS = (function (pub) {
 		    // EIS lead tracking
 		    {
 		        "library" 	: "LEAD",
-		        "source" 	: "https://www.ebsco.com/apps/global/clarke/js/mod_lead.min.js?20160405",
+		        "source" 	: "https://www.ebsco.com/apps/global/clarke/js/source/mod_lead.js?20160816",
 		        "state" 	: -1
 		    },
 		    // EIS form validation

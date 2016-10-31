@@ -390,7 +390,7 @@ var VALIDATE = (function ( pub ) {
     var schoolRoles = [ 
       "School Administrator",
       "Media Specialist/Librarian",
-      "Teacher/Faculty",
+      "Faculty/Teacher",
       "Curriculum Director/Specialist",
       "Systems/Technology",
       "Guidance/Career",
@@ -904,6 +904,10 @@ var PROGRESS = (function( pub ) {
 						step : 'step',
 						of : 'of'
 					},
+					'en-US' : {
+						step : 'step',
+						of : 'of'
+					},
 					es : {
 						step : 'paso',
 						of : 'de'
@@ -1010,6 +1014,3 @@ var PROGRESS = (function( pub ) {
 	return pub;
 	
 }( PROGRESS || {} ));
-
-
-
