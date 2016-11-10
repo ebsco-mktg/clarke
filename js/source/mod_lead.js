@@ -1,9 +1,17 @@
+'use strict';
 /*****
  * 	mod_lead.js
  * 
  * purpose: read url parameters and carrythrough values to lead forms
  * 
 
+	v1.2
+	 * made public LEAD.createCookie, LEAD.normalizeCookie
+	 * added LEAD.saveData
+	 * commented most window.console.log commands
+	 * added dynamed.com to referal and cookie domain values
+	 * added appleSauce functionality (cross domain cookie setting)
+	
 	v1.1
 	 * conversion of original leadtracking.js to a EIS module
 	 * uses new tracking parameters: 
@@ -164,7 +172,6 @@ var LEAD = (function() {
 								cmp  : 'eis-cmp'
 							},
 			
-			
 			cmpID 			: 'eis-cmp', 					// DEPRECATED; is now utm_campaign
 			campaignID 		: 'eis-cmpid', 					// DEPRECATED campaign id (need to support to make sure all current campaigns get caught)
 			
@@ -175,7 +182,7 @@ var LEAD = (function() {
 			mediumType 		: 'eis-medium', 				// DEPRECATED the key name for storing the medium type
 			defaultCmpid 	: 'eiswebsite', 				// NOT USED: a default campaign id value
 			
-			EISDomains 		: [ 'ebsco.com', 'ebscohost.com', 'epnet.com' ], 	// list of internal websites; used to skip trying to set a lead cookie
+			EISDomains 		: [ 'ebsco.com', 'ebscohost.com', 'epnet.com', 'dynamed.com' ], 	// list of internal websites; used to skip trying to set a lead cookie
 			EISLandingPg 	: 'www.ebsco.com/promo/',  		// NOT USED
 			expireLength 	: {	// length is in # of seconds, so one day === 60sec/min * 60min/hr * 24hr/day == 86400 seconds in one day
 				search 			: 86400,	// one day
@@ -193,9 +200,21 @@ var LEAD = (function() {
 				bb 				: 1209600, 	// two weeks
 				ppc 			: 86400 	// one day
 			},
+			
 			cookieDomain 	: 'ebsco.com', 			// production
 			// cookieDomain 	: 'ebscohost.com', 	// production
+			// cookieDomain 	: 'dynamed.com', 	// production
 			// cookieDomain 	: 'epnet.com',		// development
+			
+			originDomain 	: 'https://www.ebsco.com/', 
+			// originDomain 	: 'https://www.ebscohost.com/', 
+			// originDomain 	: 'https://www.dynamed.com/', 
+			
+			appleSauce 		: {
+				// "https://www.ebsco.com/": "https://www.ebsco.com/apps/applesauce/listener.html",
+				"https://www.ebscohost.com/": "https://www.ebscohost.com/apps/applesauce/listener.html"
+				// "http://www.dynamed.com/": "http://www.dynamed.com/home/apps/applesauce/listener.html"
+			}, 
 			searchSites 	: [ 
 				'www.google.com', 
 				'www.google.co.uk', 
@@ -250,7 +269,7 @@ var LEAD = (function() {
 	}
 
 	function getQS() {
-		window.console.log( 'getQS' );
+		// window.console.log( 'getQS' );
 		var qsObj = {},
 		// http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
 			match,
@@ -272,7 +291,7 @@ var LEAD = (function() {
 	 * returns true if the referrer does not match any test domains
 	 */
 	function refIsInList( testDomains ) {
-		window.console.log( 'refIsInList', testDomains );
+		// window.console.log( 'refIsInList', testDomains );
 		var i = 0,
 			ref = document.referrer,
 			isInList = false;
@@ -305,7 +324,7 @@ var LEAD = (function() {
 	pub.deleteCookie = function() {
 		try {
 			docCookies.removeItem( config.cookieName, '/', config.cookieDomain );
-			window.console.log( 'deleting cookie' );
+			// window.console.log( 'deleting cookie' );
 			return true;
 		} catch( err ) {
 			window.console.error( 'deleteCookie: ', err );
@@ -316,14 +335,15 @@ var LEAD = (function() {
 	
 	// detects campaign cookie and if found writes campaign values into page form
 	pub.detectCampaign = function() {
-		window.console.log( 'detectCampaign' );
+		// window.console.log( 'detectCampaign' );
 			// triggered by className 'fnDetectCookie'
 	    var theForm = typeof document.getElementsByClassName !== 'undefined' ? document.getElementsByClassName('fnDetectCookie') : getElementsByClass('fnDetectCookie'),
 		    theFormLength = theForm.length,
-		    dnt = navigator.doNotTrack == "1" || navigator.msDoNotTrack == "1";
+		    dnt = navigator.doNotTrack == "1" || navigator.msDoNotTrack == "1",
+		    cookiesAllowed = navigator.cookieEnabled;
 		    
-		// window.console && console.log( 'dnt: ', dnt );
-	    
+		// window.console && console.log( 'cookiesAllowed: ', cookiesAllowed );
+		// window.console.log( 'theFormLength: ', theFormLength );
 	    if ( theFormLength > 0 ) {
 
 		    // if the cookie exists, set the campaign values to newly-created form fields
@@ -332,8 +352,8 @@ var LEAD = (function() {
 		    	EIS.loadOnce( 'JSON', function() {
 		        
 			        // set-up the form fields
-			        var currCookie = docCookies.getItem( config.cookieName ),
-			        	cookieObj = normalizeCookie( currCookie ),
+			        var currCookie = cookiesAllowed ? docCookies.getItem( config.cookieName ) : JSON.parse( localStorage.getItem( config.cookieName ) ),
+			        	cookieObj = typeof currCookie !== 'object' ? pub.normalizeCookie( currCookie ) : currCookie,
 						// cookieJson = JSON.parse( currCookie ),
 						// cookie values
 						cookieMedium = typeof cookieObj[config.campaign.medium] !== undefined ? cookieObj[config.campaign.medium] : 'not set',
@@ -371,10 +391,12 @@ var LEAD = (function() {
 
 						i = 0;
 			        
+			        // window.console.log( 'currCookie: ', currCookie, cookieObj );
+			        
 			        // add the inputs to the form if it exists
 		        	for ( ; i<theFormLength; i++ ) {
 		        		var targetElem = isTesting ? document.getElementById( 'hiddenVals' ) : theForm[i];
-						window.console.log( 'targetElem: ', targetElem );
+						// window.console.log( 'targetElem: ', targetElem );
 			        	targetElem.appendChild( inputMedium );
 			        	targetElem.appendChild( inputSource );
 			        	targetElem.appendChild( inputCampaign );
@@ -385,11 +407,12 @@ var LEAD = (function() {
 		        	
 		        	if ( isTesting ) {
 		        		window.console.log( 'isTesting' );
-		        		addNames = function() {
+		        		var addNames = function() {
 		        			try {
 		        				var testInputElems = document.querySelectorAll( 'input.fnAddLabel' ),
 		        					testInputLength = testInputElems.length,
-		        					ii = 0;
+		        					ii = 0,
+		        					thisLabel = '';
 		        				
 		        				for ( ; ii < testInputLength; ii++ ) {
 		        					thisLabel = '<label>' + testInputElems[ii].getAttribute( 'name' ) + '</label>';
@@ -430,7 +453,7 @@ var LEAD = (function() {
 	      	}
 		} else {
 			// no form; return false
-			window.console.log( 'no form detected' );
+			// window.console.log( 'no form detected' );
 			return false;
 	    }
 	    
@@ -442,7 +465,7 @@ var LEAD = (function() {
 	 * return boolean based on if passed in query string object has the required parameters
 	 */
 	function checkQSforTracking( theQSObj, isOldTracking ) {
-		window.console.log( 'checkQSforTracking', theQSObj, isOldTracking );
+		// window.console.log( 'checkQSforTracking', theQSObj, isOldTracking );
 		var state = false;
 		
 		if ( isOldTracking ) {
@@ -464,7 +487,7 @@ var LEAD = (function() {
 	 * 
 	 */
 	function createTrackingObj( anObj, isOldTracking ) {
-		window.console.log( 'createTrackingObj', anObj, isOldTracking );
+		// window.console.log( 'createTrackingObj', anObj, isOldTracking );
 		var aTracker = {};
 		
 		// it is assumed that we have a valid QS
@@ -485,12 +508,46 @@ var LEAD = (function() {
 
 		return aTracker;
 	}
+
+	function sendMessage( thisFrame, remoteDomain ) {
+		var originCookie = '';
+		
+	    if ( docCookies.hasItem( config.cookieName ) ) {
+	        originCookie = docCookies.getItem( config.cookieName );
+	    }
+		thisFrame.contentWindow.postMessage( originCookie, remoteDomain );
+	}
+	
+	function createIframe( remoteDomain, iframeSrc ) {
+		var iframe = document.createElement( 'iframe' );
+		
+		iframe.setAttribute( 'style', 'display:none' );
+		iframe.src = iframeSrc;
+		document.getElementsByTagName('body')[0].appendChild( iframe );
+		
+	    iframe.onload = function() {
+	    	sendMessage( iframe, remoteDomain );
+	    };
+	}
+	
+	/*
+	var theQS = typeof getQS() !== undefined ? getQS() : {},
+		hasTracker = checkQSforTracking( theQS );
+
+	if ( hasTracker ) {
+		var remoteObj = config.appleSauce;
+		for ( var prop in remoteObj ) {
+			window.console.log( prop, remoteObj[ prop ] );
+			createIframe( prop, remoteObj[ prop ] );
+		}
+	}
+	*/
 	
 	/*
 	 * make this a cookie setter - pass in an object with the values to be set...
 	 */
-	function createCookie( eisTracker ) {
-		window.console.log( 'createCookie', eisTracker );
+	pub.createCookie = function( eisTracker ) {
+		// window.console.log( 'createCookie', eisTracker );
 		try {
 				// update/set the cookie to the qs values
 			var qsCookieString = '[{"' + config.campaign.medium + '":"' + eisTracker[config.campaign.medium] + '","' + config.campaign.source + '":"' + eisTracker[config.campaign.source] + '","' + config.campaign.name + '":"' + eisTracker[config.campaign.name] + '","' + config.campaign.content + '":"' + eisTracker[config.campaign.content] + '","' + config.custom.id + '":"' + eisTracker[config.custom.id] + '","' + config.custom.strategy + '":"' + eisTracker[config.custom.strategy] + '"}]',
@@ -504,11 +561,19 @@ var LEAD = (function() {
 			return err;
 		}
 		return true;
-	}
+	};
+	
+	// will save data to local storage (used for when cookies are not enabled)
+    pub.saveData = function( dataObj ) {
+        // window.console.log( 'localStorage' );
+        localStorage.setItem( config.cookieName, JSON.stringify( dataObj ) );
+        
+        // window.console.log( 'local storage: ', JSON.parse( localStorage.getItem( config.cookieName ) ) );
+    };
 
 	// take cookie string and transform to new format, returning values as object
-	function normalizeCookie( aCookie ) {
-		window.console.log( 'normalizeCookie', aCookie );
+	pub.normalizeCookie = function( aCookie ) {
+		// window.console.log( 'normalizeCookie', aCookie );
 		var thisTrackerObj = {},
 			cookieJson = JSON.parse( aCookie ),
 			cookieObj = cookieJson[0],
@@ -522,36 +587,33 @@ var LEAD = (function() {
 		}
 		
 		return thisTrackerObj;
-	}	
+	};	
 	
 	pub.init = function() {
-		window.console.log( 'LEAD.init' );
+		// window.console.log( 'LEAD.init' );
 		var detectCampaign;
 		
 			EIS.loadOnce( 'JSON', function() {
-				
-				
-				
-				
-				
-				
 			
 				var isNotEbscoDomain = !refIsInList( config.EISDomains );
+				isNotEbscoDomain = true;
 	
 				// check if either the referrer is a non-ebsco domain
 				// if so, we'll go and check/set the cookie
 				// otherwise it's just tripping through our sites so do nothing
 				if ( isNotEbscoDomain ) {
-					window.console.log( 'not ebsco domain referrer' );
+					// window.console.log( 'not ebsco domain referrer' );
 					
 					var theQSObj = getQS(),
 						isOldTracking = typeof theQSObj[config.og.cmp] !== 'undefined' ? true : false,
 						// check if all valid values passed in
 						hasValidQS = checkQSforTracking( theQSObj, isOldTracking ),
 						// check if there is an existing cookie
-						hasCookie = docCookies.getItem( config.cookieName ) === null ? false : true;
+						hasCookie = docCookies.getItem( config.cookieName ) === null ? false : true,
 						// our tracker object based on query string { cmpName, cmpSource, cmpMedium }
 						qsTracker = {};
+						
+					// window.console.log( 'hasValidQS: ', hasValidQS );
 						
 					if ( hasValidQS ) {
 						// log privacy policy statement in console
@@ -564,11 +626,11 @@ var LEAD = (function() {
 								// get the cookie, transform to new format if needed
 							var currCookie = docCookies.getItem( config.cookieName ),
 								// our tracker object based on cookie values
-								cookieObj = normalizeCookie( currCookie );
+								cookieObj = pub.normalizeCookie( currCookie );
 							
-							window.console.log( 'currCookie: ', currCookie );
-							window.console.log( 'cookieObj: ', cookieObj );
-							window.console.log( 'qsTracker: ', qsTracker );
+							// window.console.log( 'currCookie: ', currCookie );
+							// window.console.log( 'cookieObj: ', cookieObj );
+							// window.console.log( 'qsTracker: ', qsTracker );
 							
 							// now check if the cookie should apply, or if we need to set a new cookie
 							/*
@@ -587,7 +649,7 @@ var LEAD = (function() {
 							switch ( cookieMediumType ) {
 								case 'search' :
 									if ( qsMediumType === 'search' ) {
-										createCookie( qsTracker );
+										pub.createCookie( qsTracker );
 									} else {
 										// keep cookie as is
 									}
@@ -597,26 +659,35 @@ var LEAD = (function() {
 									if ( qsMediumType !== 'landingpage' ) {
 										// keep cookie as is
 									} else {
-										createCookie( qsTracker );
+										pub.createCookie( qsTracker );
 									}
 									break;
 									
 								default :
-									createCookie( qsTracker );
+									pub.createCookie( qsTracker );
 									break;
 							}
 							
 						} else {
-							createCookie( qsTracker );
+							pub.createCookie( qsTracker );
 						}
 						
+						/***** appleSauce *****/
+						var remoteObj = config.appleSauce;
+						for ( var prop in remoteObj ) {
+							window.console.log( prop, remoteObj[ prop ] );
+							createIframe( prop, remoteObj[ prop ] );
+						}
+						
+						
 					} else {
-						window.console.log( 'no qs detected' );
+						// window.console.log( 'no qs detected' );
 						// no qs, check if a search referrer, or a social referrer
 
 
 						// check if the referrer is in our list of search sites
 						if ( refIsInList( config.searchSites ) ) {
+							// window.console.log( 'search referrer' );
 							// window.console && console.log( 'Hello Mr. Haystack. My name is Needle.' );
 							
 								// create the campaign id from the search domain in the doc.referral
@@ -625,11 +696,20 @@ var LEAD = (function() {
 								refDomain = refPath.split('/')[0],
 								searchObj = {};
 							
-							searchObj.cmpMedium = 'search';
-							searchObj.cmpSource = refDomain;
-							searchObj.cmpName = window.location.host + "/" + window.location.pathname;
+							searchObj[config.campaign.medium] = 'search';
+							searchObj[config.campaign.source] = refDomain;
+							searchObj[config.campaign.name] = window.location.host + window.location.pathname;
 							
-							createCookie( searchObj );
+							// window.console.log( 'searchObj: ', searchObj );
+							
+							pub.createCookie( searchObj );
+
+							/***** appleSauce *****/
+							var remoteObj = config.appleSauce;
+							for ( var prop in remoteObj ) {
+								window.console.log( prop, remoteObj[ prop ] );
+								createIframe( prop, remoteObj[ prop ] );
+							}
 								
 						// check if the referrer is one of the social sites
 						} else if ( refIsInList( config.socialSites ) ) {
@@ -644,11 +724,19 @@ var LEAD = (function() {
 									refDomain = refPath.split('/')[0],
 									socialObj = {};
 									
-								socialObj.cmpMedium = 'social';
-								socialObj.cmpSource = refDomain;
-								socialObj.cmpName = window.location.host + "/" + window.location.pathname;
+								socialObj[config.campaign.medium] = 'social';
+								socialObj[config.campaign.source] = refDomain;
+								socialObj[config.campaign.name] = window.location.host + window.location.pathname;
 								
-								createCookie( socialObj );
+								pub.createCookie( socialObj );
+
+								/***** appleSauce *****/
+								var remoteObj = config.appleSauce;
+								for ( var prop in remoteObj ) {
+									window.console.log( prop, remoteObj[ prop ] );
+									createIframe( prop, remoteObj[ prop ] );
+								}
+
 							}
 							
 						} else {
