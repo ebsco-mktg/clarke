@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!--[if ltIE 8 ]>    <html lang="en-US" class="ie8"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="en-US" class="ie9"> <![endif]-->
+<!--[if ltIE 8 ]><html lang="en-US" class="ie8"> <![endif]-->
+<!--[if IE 9 ]><html lang="en-US" class="ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en-US" class=""> <!--<![endif]-->
-<head>
+<head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -17,12 +17,22 @@
     <title>Example Starter Site | EIS Framework CLARKE</title>
     <meta name="description" content=""/>
     <meta name="author" content="EBSCO Information Services, Inc."/>
-
+    
+    <!-- when using OG make certain to include the prefix property in the HEAD tag 
+         reference: http://ogp.me/
+    -->
+    <!-- NOTE: if this is a blog post or a news item, use the following:
+        <head prefix="og: http://ogp.me/ns#" article: http://ogp.me/ns/article#">
+            ...
+            <meta property="og:type" content="article" />
+    -->
     <meta property="og:site_name"   content="EBSCO Engineering Blog: Insights and News From E"/>
     <meta property="og:title"       content="page title"/>
     <meta property="og:description" content="description goes here"/>
     <meta property="og:url"         content="page url" />
     <meta property="og:image"       content="link_to_image">
+    <meta property="og:image:width" content="300" /> <!-- width of the above image -->
+    <meta property="og:image:height" content="300" /> <!-- height of above image; add both width and height so FIRST user to share can see image in post -->
     <meta property="og:type"        content="article">
     <meta name="twitter:title"      content="page title" />
     <meta name="twitter:url"        content="page url" />
@@ -56,7 +66,7 @@
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
  
     <!--framework-->
-    <link rel="stylesheet" href="https://www.ebsco.com/apps/global/clarke/css/source/core.css" />
+    <link rel="stylesheet" href="../css/source/core.css" />
     <!-- switch from /SOURCE to minified version once CLARKE is stable 
     <link rel="stylesheet" href="https://www.ebsco.com/apps/global/clarke/css/eis-core.min.css" /> -->
     
@@ -68,7 +78,7 @@
     <link rel="stylesheet" href="css/main.css" />
     
     <!--favicon if needed-->
-    <link rel="shortcut icon" href="/home/files/favicon.ico" />
+    <link rel="shortcut icon" href="https://www.ebsco.com/favicon.ico" />
 
     <!-- enhancements, fallbacks-->
     <script src="https://www.ebsco.com/apps/global/vendor/modernizr-2.6.2.min.js"></script>
@@ -91,25 +101,27 @@
                     
                     <nav class="toolbar_nav" aria-label="Primary Navigation" role="navigation">
                         <a class="toolbar_menu-btn" href="" aria-haspopup="true" aria-expanded="false">show menu</a>
-                        <ul>
+                        <ul >
                             
                             <!-- ### level 1 items ### -->
-                            <li  class="has-submenu">
-                                <a href="{level-1_link}" aria-haspopup="true" aria-expanded="false">{level-1_name}</a>
+                            <li class="has-submenu"itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+                                <a itemprop="url" href="{level-1_link}" aria-haspopup="true" aria-expanded="false">
+                                    <span itemprop="name">{level-1_name}</span>
+                                    </a>
                                 <ul>
                                     <li><a href="{level-2_link}">{level-2_name}</a></li>
                                     <li><a href="{level-2_link}">{level-2_name}</a></li>
                                     <li><a href="{level-2_link}">{level-2_name}</a></li>
                                 </ul>
                             </li>
-                            <li><a href="{level-1_link}">{level-1_name}</a></li>
+                            <li itemscope itemtype="http://www.schema.org/SiteNavigationElement"><a itemprop="url" href="{level-1_link}"><span itemprop="name">{level-1_name}</span></a></li>
                             
                             <!-- ### utility items ### -->
-                            <li class="utility-link"><a href="{utility_link}">{utility_name}</a></li>
-                            <li class="utility-link"><a href="{utility_link}">{utility_name}</a></li>
+                            <li itemscope itemtype="http://www.schema.org/SiteNavigationElement"class="utility-link"><a itemprop="url" href="{utility_link}"><span itemprop="name">{utility_name}</span></a></li>
+                            <li itemscope itemtype="http://www.schema.org/SiteNavigationElement"class="utility-link"><a itemprop="url" href="{utility_link}"><span itemprop="name">{utility_name}</span></a></li>
                             
                             <!-- ### cta item ### -->
-                            <li class="toolbar_cta"><a href="{cta_link}">{cta_name}</a></li>
+                            <li itemscope itemtype="http://www.schema.org/SiteNavigationElement"class="toolbar_cta"><a itemprop="url" href="{cta_link}"><span itemprop="name">{cta_name}</span></a></li>
                         </ul>
                     </nav>
                     
@@ -164,7 +176,7 @@
                         Phone: (205) 991-6600<br>
                         Toll-Free (USA &amp; Canada): (800) 633-4604
                     </p>
-                    <img itemprop="image" src="/apps/portal/img/headquarters.jpg" alt="EBSCO Information Services HQ" style="width:100%;" />
+                    <img itemprop="image" src="https://www.ebsco.com/apps/portal/img/headquarters.jpg" alt="EBSCO Information Services HQ" style="width:100%;" />
                     <p><a href="/offices">See all EBSCO Information Services worldwide offices&nbsp;»</a></p>
                 </aside>
 
@@ -187,6 +199,25 @@
                 <div class="content size1of1">
                     <h1>What this section's heading says</h1>
                     <p>content here.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="container">
+            <div class="inner">
+                <div class="content hide4 hide6 hide9 size3of6">
+                    <nav id="level3Nav">
+                        <p class="header_sidemenu"><a href="#level2-page-link">Level Two Page</a></p>
+                        <ul class="list_sidemenu">
+                            <li><a class="nav-link active" href="#level3-page-link">Level Three Page</a></li>
+                            <li><a class="nav-link" href="#level3-page-link">Level Three Page</a></li>
+                            <li><a class="nav-link" href="#level3-page-link">Level Three Page</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="content size1of1 size3of6">
+                    <h2>Example of content with Side Navigation</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 </div>
             </div>
         </section>
