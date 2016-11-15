@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<!--[if ltIE 8 ]><html lang="en-US" class="ie8"> <![endif]-->
+<!--[if IE 9 ]><html lang="en-US" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en-US" class=""> <!--<![endif]-->
+<head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    
+    <!--No Follow- REMOVE WHEN GOING LIVE -->
+    <meta name="robots" content="noindex, nofollow" />
+    
+    <!--RSS meta tag if needed; this is the EBSCOpost rss feed -->
+    <link rel="alternate" type="application/rss+xml" href="http://feeds.feedburner.com/ebsco/mLyF" />
+    
+    <!--Page Data-->    
+    <title>Demo - Home Page | EIS Framework CLARKE</title>
+    <meta name="description" content=""/>
+    <meta name="author" content="EBSCO Information Services, Inc."/>
+    
+    <!-- when using OG make certain to include the prefix property in the HEAD tag 
+         reference: http://ogp.me/
+    -->
+    <!-- NOTE: if this is a blog post or a news item, use the following:
+        <head prefix="og: http://ogp.me/ns#" article: http://ogp.me/ns/article#">
+            ...
+            <meta property="og:type" content="article" />
+    -->
+    <meta property="og:site_name"   content="EBSCO Engineering Blog: Insights and News From E"/>
+    <meta property="og:title"       content="page title"/>
+    <meta property="og:description" content="description goes here"/>
+    <meta property="og:url"         content="page url" />
+    <meta property="og:image"       content="link_to_image">
+    <meta property="og:image:width" content="300" /> <!-- width of the above image -->
+    <meta property="og:image:height" content="300" /> <!-- height of above image; add both width and height so FIRST user to share can see image in post -->
+    <meta property="og:type"        content="article">
+    <meta name="twitter:title"      content="page title" />
+    <meta name="twitter:url"        content="page url" />
+    <meta name="twitter:image"      content="link_to_image" />
+
+    <!--link to anchor of copyright-->
+    <link rel="copyright" href="#henry_copyright"/>
+    
+    <!-- For GA/WebMaster if needed -->
+    <meta name="google-site-verification" content="providedbywebmastertools" />
+    
+    <!--For Google Search-->
+    <!--
+    <PageMap>
+     <DataObject type="thumbnail">
+        <Attribute name="src" value="http://www.example.com/papers/sic.png" />
+        <Attribute name="width" value="627" />
+        <Attribute name="height" value="167" />
+     </DataObject>
+    </PageMap>
+    -->
+    
+    <!--Canonical if needed -->
+    <link rel="canonical" href="http://www.realURL.com" />
+    
+    <!--International if needed-->
+    <link rel="alternate" hreflang="de-at" href="https://www.ebsco.com/e/de-at"/>
+    
+    <!--typekit-->
+    <script type="text/javascript" src="//use.typekit.net/kpa3nbi.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+ 
+    <!--framework-->
+    <link rel="stylesheet" href="../css/source/core.css" />
+    <!-- switch from /SOURCE to minified version once CLARKE is stable 
+    <link rel="stylesheet" href="https://www.ebsco.com/apps/global/clarke/css/eis-core.min.css" /> -->
+    
+    <script src="https://www.ebsco.com/apps/global/clarke/js/source/eis.js"></script>
+    <!-- switch from /SOURCE to minified version once CLARKE is stable
+    <script src="https://www.ebsco.com/apps/global/clarke/js/eis.js"></script> -->
+
+    <!--site styles-->
+    <link rel="stylesheet" href="css/main.css" />
+    
+    <!--favicon if needed-->
+    <link rel="shortcut icon" href="https://www.ebsco.com/favicon.ico" />
+
+    <!-- enhancements, fallbacks-->
+    <script src="https://www.ebsco.com/apps/global/vendor/modernizr-2.6.2.min.js"></script>
+    <!--[if lt IE 9]><script type="text/javascript" src="https://www.ebsco.com/apps/global/vendor/css3-mediaqueries.js"></script><![endif]-->
+
+</head>
+<body>
+    <div id="starterSite" class="page_starter-template">
+        
+        <header id="siteHeader" class="special-container">
+            <div class="inner">
+            
+                <div class="site-id" itemscope itemtype="http://schema.org/Organization">
+                    <a class="site-id_logo" href="https://www.ebsco.com" itemprop="url">
+                        <img src="https://www.ebsco.com/files/images/ebsco_logo.png" alt="EBSCO" itemprop="logo" />
+                    </a>
+                </div>
+                
+                <div class="toolbar group">
+                    
+                    <nav class="toolbar_nav" aria-label="Primary Navigation" role="navigation">
+                        <a class="toolbar_menu-btn" href="" aria-haspopup="true" aria-expanded="false">show menu</a>
+                        <ul >
+                            
+                            <!-- ### level 1 items ### -->
+                            <li class="has-submenu"itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+                                <a itemprop="url" href="{level-1_link}" aria-haspopup="true" aria-expanded="false">
+                                    <span itemprop="name">{level-1_name}</span>
+                                    </a>
+                                <ul>
+                                    <li><a href="{level-2_link}">{level-2_name}</a></li>
+                                    <li><a href="{level-2_link}">{level-2_name}</a></li>
+                                    <li><a href="{level-2_link}">{level-2_name}</a></li>
+                                </ul>
+                            </li>
+                            <li itemscope itemtype="http://www.schema.org/SiteNavigationElement"><a itemprop="url" href="{level-1_link}"><span itemprop="name">{level-1_name}</span></a></li>
+                            
+                            <!-- ### utility items ### -->
+                            <li itemscope itemtype="http://www.schema.org/SiteNavigationElement"class="utility-link"><a itemprop="url" href="{utility_link}"><span itemprop="name">{utility_name}</span></a></li>
+                            <li itemscope itemtype="http://www.schema.org/SiteNavigationElement"class="utility-link"><a itemprop="url" href="{utility_link}"><span itemprop="name">{utility_name}</span></a></li>
+                            
+                            <!-- ### cta item ### -->
+                            <li itemscope itemtype="http://www.schema.org/SiteNavigationElement"class="toolbar_cta"><a itemprop="url" href="{cta_link}"><span itemprop="name">{cta_name}</span></a></li>
+                        </ul>
+                    </nav>
+                    
+                    <div class="toolbar_utility">
+                        <ul class="toolbar_links">
+                            <!-- ### utility items ### -->
+                            <li class="utility-link"><a href="{utility_link}">{utility_name}</a></li>
+                            <li class="utility-link"><a href="{utility_link}">{utility_name}</a></li>
+                        </ul>
+                    </div>
+                        
+                    <a class="toolbar_search" href="{search_link}">{search_name}</a>
+                    
+                </div>
+            </div>
+        </header>
+        <div id="navOverlay"></div>
+
+        <section class="container breadcrumb-container">
+            <div class="inner">
+                <div itemscope itemtype="http://schema.org/BreadcrumbList" class="content breadcrumb-content size1of1">
+                    <div class="inner">
+                        <p>
+                            <span class="bc_separator bc_mobile">&laquo;</span> 
+                            <a itemprop="url" class="bc_page" href="#home-url"><span itemprop="name">Home</span></a> 
+                            <span class="bc_separator">&raquo;</span> 
+                            <a itemprop="url" class="bc_page" href="#level-1-url"><span itemprop="name">Level One Page</span></a>
+                            <span class="bc_separator">&raquo;</span> 
+                            <a itemprop="url" class="bc_page" href="#level-2-url"><span itemprop="name">Level Two Page</span></a>
+                            <span class="bc_separator">&raquo;</span> 
+                            <span class="bc_current" itemprop="name">The Current Page</span>
+                        </p>
+                    </div> 
+                </div>
+            </div>
+        </section>
+
+
+
+        <section role="region" aria-label="this aria label" class="container">
+            <div class="inner">
+                <div class="content size1of1">
+                    <h1>Example Layout Grids</h1>
+                    <p>This page shows various sample layout grids to demonstrate the new inherited approach of grid-sizing. Layout samples are as follows:</p>
+                    <ul>
+                        <!-- <li>Full width (no change)</li> -->
+                        <li>2 boxes : stacked at mobile; 50% at tablet-to-desktop</li>
+                        <li>2 boxes : stacked at mobile; 50% at desktop</li>
+                        <li>3 boxes : stacked at mobile; 33% at tablet-to-desktop</li>
+                        <li>3 boxes : stacked at mobile; 33% at tablet; 25% at desktop</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- <section class="container" style="background: rgb(245, 245, 245);">
+            <div class="inner">
+                
+                <div class="content size1of1">
+                    <h2>Full width (no change)</h2>
+                    <p>Our typical <code>class="content size1of1"</code></p>
+                </div>
+                <div class="content size1of1">
+                    <h3>Column A - size1of1</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+            </div>
+        </section> -->
+        
+        
+        <section class="container">
+            <div class="inner">
+                <div class="content size1of1" style="margin-top:32px;">
+                    <h2>2 boxes : stacked at mobile; 50% at tablet-to-desktop</h2>
+                </div>
+            </div>
+        </section>                
+        <section class="container" style="background: rgb(245, 200, 200);">
+            <div class="inner">
+                <div class="content size1of1">
+                    <p>Old method: <code>&lt;div class="content size1of1 size5of10 size6of12 size7of14 size8of16"&gt;</code></p>
+                </div>
+                <div class="content size1of1 size5of10 size6of12 size7of14 size8of16">
+                    <h3>Column A - size1of1 size5of10 size6of12 size7of14 size8of16</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="content size1of1 size5of10 size6of12 size7of14 size8of16">
+                    <h3>Column B - size1of1 size5of10 size6of12 size7of14 size8of16</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+
+            </div>
+        </section>
+        <hr />
+        <section class="container" style="background: rgb(245, 210, 210);">
+            <div class="inner">
+                <div class="content size1of1">
+                    <p>New method: <code>&lt;div class="content size1of1 size5of10"&gt;</code></p>
+                </div>
+                <div class="content size1of1 size5of10">
+                    <h3>Column A - size1of1 size5of10</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="content size1of1 size5of10">
+                    <h3>Column B - size1of1 size5of10</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+
+            </div>
+        </section>
+        
+
+        <section class="container">
+            <div class="inner">
+                <div class="content size1of1" style="margin-top:32px;">
+                    <h2>2 boxes : stacked at mobile; 50% at desktop</h2>
+                </div>
+            </div>
+        </section>                
+        <section class="container" style="background: rgb(200, 245, 200);">
+            <div class="inner">
+                <div class="content size1of1">
+                    <p>Old method: <code>&lt;div class="content size1of1 size7of14 size8of16"&gt;</code></p>
+                </div>
+                <div class="content size1of1 size7of14 size8of16">
+                    <h3>Column A - size1of1 size7of14 size8of16</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="content size1of1 size7of14 size8of16">
+                    <h3>Column B - size1of1 size7of14 size8of16</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+
+            </div>
+        </section>
+        <hr />
+        <section class="container" style="background: rgb(210, 245, 210);">
+            <div class="inner">
+                <div class="content size1of1">
+                    <p>New method: <code>&lt;div class="content size1of1 size7of14"&gt;</code></p>
+                </div>
+                <div class="content size1of1 size7of14">
+                    <h3>Column A - size1of1 size7of14</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="content size1of1 size7of14">
+                    <h3>Column B - size1of1 size7of14</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <section class="container">
+            <div class="inner">
+                <div class="content size1of1" style="margin-top:32px;">
+                    <h2>3 boxes : stacked at mobile; 33% at tablet-to-desktop</h2>
+                </div>
+            </div>
+        </section>                
+        <section class="container" style="background: rgb(200, 200, 245);">
+            <div class="inner">
+                <div class="content size1of1">
+                    <p>Old method: <code>&lt;div class="content size1of1 size3of9 size3of10 size4of12 size4of14 size5of16"&gt;</code></p>
+                </div>
+                <div class="content size1of1 size3of9 size3of10 size4of12 size4of14 size5of16">
+                    <h3>Column A - size1of1 size3of9 size3of10 size4of12 size4of14 size5of16</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="content size1of1 size3of9 size3of10 size4of12 size4of14 size5of16">
+                    <h3>Column B - size1of1 size3of9 size3of10 size4of12 size4of14 size5of16</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="content size1of1 size3of9 size3of10 size4of12 size4of14 size5of16">
+                    <h3>Column C - size1of1 size3of9 size3of10 size4of12 size4of14 size5of16</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+
+            </div>
+        </section>
+        <hr />
+        <section class="container" style="background: rgb(210, 210, 245);">
+            <div class="inner">
+                <div class="content size1of1">
+                    <p>New method: <code>&lt;div class="content size1of1 size3of9"&gt;</code></p>
+                </div>
+                <div class="content size1of1 size3of9">
+                    <h3>Column A - size1of1 size3of9</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="content size1of1 size3of9">
+                    <h3>Column B - size1of1 size3of9</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="content size1of1 size3of9">
+                    <h3>Column C - size1of1 size3of9</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="container">
+            <div class="inner">
+                <div class="content size1of1" style="margin-top:32px;">
+                    <h2>3 boxes : stacked at mobile; 33% at tablet; 25% at desktop</h2>
+                </div>
+            </div>
+        </section>                
+        <section class="container" style="background: rgb(245, 245, 200);">
+            <div class="inner">
+                <div class="content size1of1">
+                    <p>Old method: <code>&lt;div class="content size1of1 size3of9 size3of10 size3of12 size4of14 size4of16"&gt;</code></p>
+                </div>
+                <div class="content size1of1 size3of9 size3of10 size3of12 size4of14 size4of16">
+                    <h3>Column A - size1of1 size3of9 size3of10 size3of12 size4of14 size4of16</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="content size1of1 size3of9 size3of10 size4of12 size4of14 size5of16">
+                    <h3>Column B - size1of1 size3of9 size3of10 size3of12 size4of14 size4of16</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="content size1of1 size3of9 size3of10 size4of12 size4of14 size5of16">
+                    <h3>Column C - size1of1 size3of9 size3of10 size3of12 size4of14 size4of16</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="content size1of1 size3of9 size3of10 size4of12 size4of14 size5of16">
+                    <h3>Column D - size1of1 size3of9 size3of10 size3of12 size4of14 size4of16</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="content size1of1 size3of9 size3of10 size4of12 size4of14 size5of16">
+                    <h3>Column E - size1of1 size3of9 size3of10 size3of12 size4of14 size4of16</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+
+            </div>
+        </section>
+        <hr />
+        <section class="container" style="background: rgb(245, 245, 210);">
+            <div class="inner">
+                <div class="content size1of1">
+                    <p>New method: <code>&lt;div class="content size1of1 size3of9 size4of12"&gt;</code></p>
+                </div>
+                <div class="content size1of1 size3of9 size4of12">
+                    <h3>Column A - size1of1 size3of9</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="content size1of1 size3of9 size4of12">
+                    <h3>Column B - size1of1 size3of9</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="content size1of1 size3of9 size4of12">
+                    <h3>Column C - size1of1 size3of9</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="content size1of1 size3of9 size4of12">
+                    <h3>Column D - size1of1 size3of9</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="content size1of1 size3of9 size4of12">
+                    <h3>Column E - size1of1 size3of9</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+            </div>
+        </section>
+        
+        
+        <!-- should this element be 'footer' ? -->
+        <section class="container" id="footer-bottom">
+            <div class="inner">
+                <footer role="contentinfo" class="content">
+                    <!-- omitted language switcher code/markup for now -->
+                    <nav class="container" role="navigation" aria-label="footer navigation">
+                        <ul>
+                            <li>footer links</li>
+                        </ul>
+                    </nav>
+                    <ul id="footer-social" class="group" itemscope itemtype="http://schema.org/Organization">
+                        <link itemprop="url" href="https://www.ebsco.com">
+                        <meta itemprop="name" content="EBSCO Information Services, Inc." />
+                        <li class="facebook">
+                            <a itemprop="sameAs" href="https://www.facebook.com/EBSCOInfoServices" target="_blank" class="ga" data-ga="{ "category" : "Social", "action" : "click", "label" : "Facebook"}"><div>like us on facebook</div></a>
+                        </li>   
+                        <li class="twitter">
+                            <a itemprop="sameAs" href="https://twitter.com/EBSCO" target="_blank" class="ga" data-ga="{ "category" : "Social", "action" : "click", "label" : "Twitter"}"><div>follow us on twitter</div></a>
+                        </li>
+                        <li class="google">
+                            <a itemprop="sameAs" href="https://plus.google.com/+ebscohostcom/posts" target="_blank" class="ga" data-ga="{ "category" : "Social", "action" : "click", "label" : "Google Plus"}"><div>add us to your google+ circle</div></a>
+                        </li>
+                        <li class="linkedin">
+                            <a itemprop="sameAs" href="https://www.linkedin.com/company/7777?trk=tyah" target="_blank" class="ga" data-ga="{ "category" : "Social", "action" : "click", "label" : "LinkedIn"}"><div>connect with us on linkedin</div></a>
+                        </li>
+                        <li class="youtube">
+                            <a itemprop="sameAs" href="https://www.youtube.com/user/ebscopublishing" target="_blank" class="ga" data-ga="{ "category" : "Social", "action" : "click", "label" : "YouTube"}"><div>see what we're up to on youtube</div></a>
+                        </li>
+                        <li class="pinterest">
+                            <a itemprop="sameAs" href="https://pinterest.com/ebsco" target="_blank" class="ga" data-ga="{ "category" : "Social", "action" : "click", "label" : "pinterest"}"><div>follow us on pinterest</div></a>
+                        </li>
+                    </ul>
+                </footer>
+            </div>
+        </section>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>

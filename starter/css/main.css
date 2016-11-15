@@ -7,6 +7,14 @@
     
         ::Site Main Navigation
         ::Site Breadcrumbs
+        
+        :: buttons
+        :: image-title-text
+        :: special character linking (i.e. guillemet)
+        :: responsive images
+        :: fluid images
+        :: quotes
+        
     
  */
 
@@ -106,8 +114,9 @@
 
 /* ##### PARENT NAV CONTAINER ##### */
     /* because we needed to remove the positioning rule on the '.container', we need to re-apply inner width constraints */
-    .special-container {} 
+    .special-container {}
     .special-container > .inner {
+        box-sizing: border-box;
         margin: auto;
         max-width: 1280px;
         min-width: 240px;
@@ -119,21 +128,30 @@
     .site-id {
         display: block;
         margin: auto;
-        /* width should match the logo */
-        width: 129px;
+        /* remove width for responsive logo */
+        /* width: 200px; */
     }
         .site-id_logo {
+            border: none;
             display: block;
             line-height: 60px;
+            /* responsive logo styles */
+            background: url('https://www.ebsco.com/files/images/eis-logo-sprite.png') no-repeat 0 0 transparent;
+            height: 44px;
+            margin: 16px auto 0 auto;
+            width: 200px;
         }
+            .site-id_logo img { display: none; }
+        .site-id_logo:hover { border: none; }
         .site-id_logo img {
             vertical-align: middle;
+            height: auto;
         }
 
 
 /* ##### TOOLBAR CONTAINER ##### */
     .toolbar { }
-    
+
     .toolbar a {
         text-decoration: none;
     }
@@ -150,6 +168,7 @@
             display: block;
             margin-top: -1px;
             padding: 0 10px;
+            transition: all 0.3s ease-out;
         }
         .toolbar_nav > ul {
             background: #2a2a2a;
@@ -161,7 +180,7 @@
             position: absolute;
             right: 100%;
             transition: all 0.3s;
-            top: 60px;
+            top: 62px;
             z-index: 2;
         }
         a.toolbar_menu-btn {
@@ -172,7 +191,7 @@
             left: 0;
             margin: 0;
             position: absolute;
-            top: 20px;
+            top: 12px;
             width: 26px;
         }
         .toolbar_menu-btn + ul.isOpen {
@@ -180,15 +199,17 @@
             right: 20%;
             transition: all 0.3s ease-out;
         }
-        
+
         .toolbar_nav li {
             line-height: 60px;
+            /* remove bottom padding inherited from the .scale_ebsco styles */
+            margin-bottom: 0;
         }
-        
+
         .toolbar_nav li a:hover {
             background: #454545;
         }
-        
+
         .toolbar_nav .utility-link {
             background: #5d5d5d;
         }
@@ -206,7 +227,7 @@
 
 /* ##### CALL TO ACTION (CTA) ##### */
     .toolbar_nav .toolbar_cta {
-        background: rgb(25, 166, 73);
+        background: rgb(223, 91, 87);
     }
     .toolbar_nav .toolbar_cta a,
     .toolbar_nav .toolbar_cta a:focus,
@@ -214,30 +235,41 @@
         color: #fff;
         display: block;
         margin: 0;
-        padding: 0 20px;
+        padding: 5px 20px;
         text-align: center;
         text-decoration: none;
         transition: all 0.35s ease-in-out;
     }
-        .toolbar_nav .toolbar_cta a:focus,
-        .toolbar_nav .toolbar_cta a:hover {
-            background: rgba(25, 166, 73, 0.8);
+    .toolbar_nav .toolbar_cta,
+    .toolbar_nav .toolbar_cta:focus,
+    .toolbar_nav .toolbar_cta:hover {
+      transition: all 0.35s ease-in-out;
+    }        
+        .toolbar_nav .toolbar_cta:focus,
+        .toolbar_nav .toolbar_cta:hover {
+            background: rgba(223, 91, 87, 0.8);
+        }
+        .toolbar_nav li.toolbar_cta a:hover {
+            background: none;
         }
 
 
 /* ##### SITE SEARCH ##### */
     .toolbar_search {
         background: url(//www.ebsco.com/apps/global/clarke/css/img/search-icon-hi.png) 0 0 no-repeat transparent;
+        /* hide any assistive text */
         color: transparent;
         height: 26px;
+        /* hide any assistive text */
+        overflow: hidden;
         position: absolute;
         right: 10px;
         top: 20px;
         width: 26px;
     }
         .toolbar_search:focus,
-        .toolbar_search:hover { 
-            border-bottom: 0px; 
+        .toolbar_search:hover {
+            border-bottom: 0px;
         }
 
 
@@ -250,26 +282,179 @@
         width: 100%;
         z-index: 1;
     }
+/*
+    ========================================
+        ::Site Breadcrumbs
+    ========================================
+
+    USAGE
+    ========================================
+    Pattern for breadcrumbs
+
+    The below markup is assumed to be used; changing class names will impact css functionality
+
+    Framework is not required
 
 
+    MARKUP:
+    ========================================
+    <section class="container breadbrumb-container">
+        <div class="inner">
+            <div class="content breadcrumb-content size1of1">
+                <p>
+                    <a class="bc_page" href="#home">Home</a>
+                    <span class="bc_separator">&raquo;</span>
+                    <a class="bc_page" href="#level-1">Level 1</a>
+                    <span class="bc_separator">&raquo;</span>
+                    <span class="bc_current">Level 2</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    NOTES:
+    ========================================
+    Does not use framework grid system (can switch from mobile to desktop at any required mediaquery)
+
+    Tested with css normalizing/reset (not included here)
+
+*/
+.breadcrumb-container {
+    background: rgb( 224, 224, 224 );
+}
+.breadcrumb-content p { margin: 16px 0; }
+.breadcrumb-content p,
+.breadcrumb-content a {
+    border: none;
+    color: #969696;
+    font: 400 14px/1.2 "myriad-pro-n4","myriad-pro",sans-serif;
+    text-decoration: none;
+}
+    .breadcrumb-content a:hover {
+        border: none;
+        text-decoration: underline;
+    }
+.breadcrumb-content .bc_separator {
+    padding: 0 4px;
+}
+.breadcrumb-content .bc_current {
+    color: #525252;
+}
+/* these rules at mobile will have bc display only the parent item */
+.bc_page,
+.bc_separator,
+.bc_page:last-of-type ~ * {
+    display: none;
+}
+.bc_page:last-of-type,
+.bc_mobile {
+    display: initial;
+}
+
+
+/*
+    ========================================
+        ::Side Navigation
+    ========================================
+
+    USAGE
+    ========================================
+    Pattern for sidebar / leftside navigation
+
+    The below markup is assumed to be used; changing class names will impact css functionality
+
+    Framework is used to hide nav at lower widths
+
+
+    MARKUP:
+    ========================================
+    <nav id="level3Nav">
+        <p class="header_sidemenu"><a href="#level2-page-link">Level Two Page</a></p>
+        <ul class="list_sidemenu">
+            <li><a class="nav-link active" href="#level3-page-link">Level Three Page</a></li>
+            <li><a class="nav-link" href="#level3-page-link">Level Three Page</a></li>
+            <li><a class="nav-link" href="#level3-page-link">Level Three Page</a></li>
+        </ul>
+    </nav>
+
+
+    NOTES:
+    ========================================
+    Does not use framework grid system (can switch from mobile to desktop at any required mediaquery)
+
+    Tested with css normalizing/reset (not included here)
+
+*/
+
+#level3Nav {
+    background-color: rgb(245, 245, 245);
+    padding: 0;
+    width: auto;
+}
+#level3Nav .header_sidemenu {
+    background: rgb( 221, 221, 221 );
+    line-height: 46px;
+    margin: 0;
+    padding: 0 10px;
+}
+#level3Nav .header_sidemenu a {
+    color: rgb( 69, 69, 69 );
+    font-size: 22px;
+    font-weight: 400;
+}
+#level3Nav .header_sidemenu a:hover {
+    border-color: rgb( 69, 69, 69 );
+}
+#level3Nav .list_sidemenu {
+    display: block;
+    list-style: none;
+    margin: 0;
+    padding: 0 20px;
+}
+#level3Nav .list_sidemenu li,
+#level3Nav .list_sidemenu li:first-child {
+    border-bottom: 1px solid rgb( 223, 223, 223 );
+    display: block;
+    font-size: 14px;
+    list-style: none;
+    margin: 0;
+    padding: 15px 0;
+}
+#level3Nav .list_sidemenu li a {
+    color: rgb( 69, 69, 69 );
+    text-decoration: none;
+}
+#level3Nav .list_sidemenu li a.active,
+#level3Nav .list_sidemenu li a:hover {
+    border-bottom: 1px solid rgb( 69, 69, 69 );
+    text-decoration: none;
+}
+#level3Nav .list_sidemenu li:last-child {
+    border-bottom: 0px;
+}
 
 
 /* adjust the breakpoint size as needed */
-@media screen and (min-width: 940px) {
-    
+@media screen and (min-width: 820px) {
+
     /* ##### SITE LOGO ##### */
-        .site-id { 
+        .site-id {
             margin: 0;
         }
-    
-    
+        .site-id_logo {
+            background-position: 0 -144px;
+            margin: 16px 0 0;
+            width: 386px;
+        }
+
     /* ##### TOOLBAR CONTAINER ##### */
         .toolbar {
             margin: auto;
             position: relative;
         }
-    
-    
+
+
     /* ##### MAIN NAVIGATION ITEMS (LEVEL 1) ##### */
         .toolbar_nav .toolbar_menu-btn,
         .toolbar_nav .utility-link,
@@ -278,7 +463,7 @@
         }
         .toolbar_nav li a:hover {
             background: none;
-        }        
+        }
         .toolbar_nav a {
             border: none;
             color: #5d5d5d;
@@ -289,7 +474,9 @@
             .toolbar_nav > ul > li:focus > a,
             .toolbar_nav > ul > li:hover > a,
             .toolbar_nav a:focus,
-            .toolbar_nav a:hover {
+            .toolbar_nav a:hover,
+            .toolbar_nav > ul > li.active > a {
+                border: none;
                 text-decoration: underline;
             }
         .toolbar_nav ul {
@@ -304,7 +491,7 @@
         }
 
 
-    /* ##### SUBMENU NAVIGATION ITEMS (LEVEL 2) ##### */    
+    /* ##### SUBMENU NAVIGATION ITEMS (LEVEL 2) ##### */
         .toolbar_nav > ul > li {
             display: inline-block;
             line-height: 60px;
@@ -314,7 +501,7 @@
         .toolbar_nav > ul > li > a {
             margin: 0 32px 0 0;
         }
- 
+
         /* dropdown */
         .has-submenu {
             position: relative;
@@ -326,7 +513,7 @@
             content: " ";
             display: block;
             position: absolute;
-            top: 24px;
+            top: 26px;
             right: 22px;
             transition: all 0.15s ease-in-out;
         }
@@ -371,26 +558,27 @@
             padding: 0 10px;
         }
         .has-submenu ul a:focus,
-        .has-submenu ul a:hover {
+        .has-submenu ul a:hover,
+        .has-submenu ul li.active a{
             background: #454545;
             text-decoration: none;
         }
- 
-    
+
+
     /* ##### CALL TO ACTION (CTA) ##### */
         .toolbar_utility,
         .toolbar_cta {
             display: inline-block;
             float: right;
         }
-        
+
         .toolbar_nav .toolbar_cta {
-            margin: 15px 60px 0 0;
+            margin: 10px 60px 0 0;
         }
         .toolbar_cta a {
             line-height: 30px;
         }
-    
+
     /* ##### UTILITY ITEMS ##### */
         .toolbar_links {
             list-style: none;
@@ -404,15 +592,17 @@
             .toolbar_links .utility-link {
                 display: inline-block;
                 margin: 0 0 0 20px;
+                text-transform: uppercase;
             }
             .toolbar_links .utility-link a {
+                border: none;
                 color: #5d5d5d;
                 font: 400 14px/1.2 "myriad-pro-n4","myriad-pro",sans-serif;
                 text-decoration: none;
-                text-transform: uppercase;
             }
             .toolbar_links .utility-link a:focus,
             .toolbar_links .utility-link a:hover {
+                border: none;
                 text-decoration: underline;
             }
 
@@ -420,63 +610,21 @@
         .toolbar_search {
             top: 16px;
         }
-    
-    
-}
 
-/*
-    ========================================
-        ::Site Breadcrumbs
-    ========================================
-        
-    USAGE
-    ========================================
-    Pattern for breadcrumbs
-    
-    The below markup is assumed to be used; changing class names will impact css functionality
-    
-    Framework is not required
-    
-
-    MARKUP:
-    ========================================
-    <div class="content breadcrumb-content size1of1">
-        <p>
-            <a class="bc_page" href="#home">Home</a> 
-            <span class="bc_separator">&raquo;</span> 
-            <a class="bc_page" href="#level-1">Level 1</a> 
-            <span class="bc_separator">&raquo;</span> 
-            <span class="bc_current">Level 2</span>
-        </p>
-    </div>
-
-
-
-    NOTES:
-    ========================================
-    Does not use framework grid system (can switch from mobile to desktop at any required mediaquery)
-    
-    Tested with css normalizing/reset (not included here)
-    
-*/
-.breadcrumb-content p,
-.breadcrumb-content a {
-    color: #969696;
-    font: 400 14px/1.2 "myriad-pro-n4","myriad-pro",sans-serif;
-    text-decoration: none;
-}
-    .breadcrumb-content a:hover {
-        text-decoration: underline;
+     /* ##### BREADCRUMBS ##### */
+    .bc_page,
+    .bc_separator,
+    .bc_page:last-of-type ~ * {
+        display: initial;
     }
-.breadcrumb-content .bc_separator {
-    padding: 0 4px;
+    .bc_mobile {
+        display: none;
+    }
+    .breadcrumb-content { min-height: 44px; }
+    .breadcrumb-content > p { display: none;}
+
 }
-.breadcrumb-content .bc_current {
-    color: #525252;
-}
-
-
-
+/* END Navigation Styles */
 
 
 
